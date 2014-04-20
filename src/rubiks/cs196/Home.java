@@ -1,4 +1,5 @@
 package rubiks.cs196;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,58 +11,58 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-
 public class Home extends Activity {
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
-		
+
 		RelativeLayout rel = (RelativeLayout) findViewById(R.id.rel1);
 		rel.setBackgroundColor(Color.BLACK);
-		
+
 		final Button button1 = (Button) findViewById(R.id.button1);
-		
+
 		Button next = (Button) findViewById(R.id.next);
-		
+
 		next.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
-				Intent intent = new Intent(getApplicationContext(), FaceTwo.class);
+
+				Intent intent = new Intent(getApplicationContext(),
+						FaceTwo.class);
 				startActivity(intent);
-				
+
 			}
 		});
-		
-		
+
 		final Button buttonR = (Button) findViewById(R.id.buttonred);
 		buttonR.setBackgroundColor(Color.RED);
-		
+
 		final Button buttonB = (Button) findViewById(R.id.buttonblue);
 		buttonB.setBackgroundColor(Color.BLUE);
-		
+
 		final Button buttonG = (Button) findViewById(R.id.buttongreen);
 		buttonG.setBackgroundColor(Color.GREEN);
-		
+
 		final Button buttonP = (Button) findViewById(R.id.buttonpink);
 		buttonP.setBackgroundColor(Color.MAGENTA);
-		
+
 		final Button buttonY = (Button) findViewById(R.id.buttonyellow);
 		buttonY.setBackgroundColor(Color.YELLOW);
-		
+
 		final Button buttonW = (Button) findViewById(R.id.buttonwhite);
 		buttonW.setBackgroundColor(Color.WHITE);
-		
-		//Flag 0 is red, 1 is pink, 2 is yellow, 3 is green, 4 is blue, 5 is white
+
+		// Flag 0 is red, 1 is pink, 2 is yellow, 3 is green, 4 is blue, 5 is
+		// white
 		final boolean[] flags = new boolean[6];
 
-		buttonR.setOnClickListener(new OnClickListener(){
+		buttonR.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View v){
+			public void onClick(View v) {
 				flags[0] = new Boolean(true);
 				flags[1] = new Boolean(false);
 				flags[2] = new Boolean(false);
@@ -71,10 +72,10 @@ public class Home extends Activity {
 
 			}
 		});
-		
-		buttonP.setOnClickListener(new OnClickListener(){
+
+		buttonP.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View v){
+			public void onClick(View v) {
 				flags[0] = new Boolean(false);
 				flags[1] = new Boolean(true);
 				flags[2] = new Boolean(false);
@@ -84,10 +85,10 @@ public class Home extends Activity {
 
 			}
 		});
-		
-		buttonY.setOnClickListener(new OnClickListener(){
+
+		buttonY.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View v){
+			public void onClick(View v) {
 				flags[0] = new Boolean(false);
 				flags[1] = new Boolean(false);
 				flags[2] = new Boolean(true);
@@ -97,10 +98,10 @@ public class Home extends Activity {
 
 			}
 		});
-		
-		buttonG.setOnClickListener(new OnClickListener(){
+
+		buttonG.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View v){
+			public void onClick(View v) {
 				flags[0] = new Boolean(false);
 				flags[1] = new Boolean(false);
 				flags[2] = new Boolean(false);
@@ -110,10 +111,10 @@ public class Home extends Activity {
 
 			}
 		});
-		
-		buttonB.setOnClickListener(new OnClickListener(){
+
+		buttonB.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View v){
+			public void onClick(View v) {
 				flags[0] = new Boolean(false);
 				flags[1] = new Boolean(false);
 				flags[2] = new Boolean(false);
@@ -123,10 +124,10 @@ public class Home extends Activity {
 
 			}
 		});
-		
-		buttonW.setOnClickListener(new OnClickListener(){
+
+		buttonW.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View v){
+			public void onClick(View v) {
 				flags[0] = new Boolean(false);
 				flags[1] = new Boolean(false);
 				flags[2] = new Boolean(false);
@@ -136,258 +137,285 @@ public class Home extends Activity {
 
 			}
 		});
-	
+
 		button1.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
+				int i =0;
 				if (flags[0]) {
 					button1.setBackgroundColor(Color.RED);
-				}
-				else if (flags[1]){
+					Cube.setColor(i, 'R');
+				} else if (flags[1]) {
 					button1.setBackgroundColor(Color.MAGENTA);
-				}
-				else if (flags[2]){
+					Cube.setColor(i, 'O');
+				} else if (flags[2]) {
 					button1.setBackgroundColor(Color.YELLOW);
-				}
-				else if (flags[3]){
+					Cube.setColor(i, 'Y');
+				} else if (flags[3]) {
 					button1.setBackgroundColor(Color.GREEN);
-				}
-				else if (flags[4]){
+					Cube.setColor(i, 'G');
+				} else if (flags[4]) {
 					button1.setBackgroundColor(Color.BLUE);
-				}
-				else button1.setBackgroundColor(Color.WHITE);
-				
-				Toast toast = Toast.makeText(getApplicationContext(), "Choose A Color", Toast.LENGTH_SHORT);
+					Cube.setColor(i, 'B');
+				} else
+					button1.setBackgroundColor(Color.WHITE);
+				Cube.setColor(i, 'W');
+
+				Toast toast = Toast.makeText(getApplicationContext(),
+						"Choose A Color", Toast.LENGTH_SHORT);
 				toast.show();
 			}
 		});
 
 		final Button button2 = (Button) findViewById(R.id.button2);
 		button2.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				int i =1;
 				if (flags[0]) {
 					button2.setBackgroundColor(Color.RED);
-				}
-				else if (flags[1]){
+					Cube.setColor(i, 'R');
+				} else if (flags[1]) {
 					button2.setBackgroundColor(Color.MAGENTA);
-				}
-				else if (flags[2]){
+					Cube.setColor(i, 'O');
+				} else if (flags[2]) {
 					button2.setBackgroundColor(Color.YELLOW);
-				}
-				else if (flags[3]){
+					Cube.setColor(i, 'Y');
+				} else if (flags[3]) {
 					button2.setBackgroundColor(Color.GREEN);
-				}
-				else if (flags[4]){
+					Cube.setColor(i, 'G');
+				} else if (flags[4]) {
 					button2.setBackgroundColor(Color.BLUE);
-				}
-				else button2.setBackgroundColor(Color.WHITE);
-				
-				Toast toast = Toast.makeText(getApplicationContext(), "Choose a Color", Toast.LENGTH_SHORT);
+					Cube.setColor(i, 'B');
+				} else
+					button2.setBackgroundColor(Color.WHITE);
+				Cube.setColor(i, 'W');
+
+				Toast toast = Toast.makeText(getApplicationContext(),
+						"Choose A Color", Toast.LENGTH_SHORT);
 				toast.show();
 			}
 		});
-		
+
 		final Button button3 = (Button) findViewById(R.id.button3);
 		button3.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				int i =2;
 				if (flags[0]) {
 					button3.setBackgroundColor(Color.RED);
-				}
-				else if (flags[1]){
+					Cube.setColor(i, 'R');
+				} else if (flags[1]) {
 					button3.setBackgroundColor(Color.MAGENTA);
-				}
-				else if (flags[2]){
+					Cube.setColor(i, 'O');
+				} else if (flags[2]) {
 					button3.setBackgroundColor(Color.YELLOW);
-				}
-				else if (flags[3]){
+					Cube.setColor(i, 'Y');
+				} else if (flags[3]) {
 					button3.setBackgroundColor(Color.GREEN);
-				}
-				else if (flags[4]){
+					Cube.setColor(i, 'G');
+				} else if (flags[4]) {
 					button3.setBackgroundColor(Color.BLUE);
-				}
-				else button3.setBackgroundColor(Color.WHITE);
-				
-				Toast toast = Toast.makeText(getApplicationContext(), "Choose a Color", Toast.LENGTH_SHORT);
+					Cube.setColor(i, 'B');
+				} else
+					button3.setBackgroundColor(Color.WHITE);
+				Cube.setColor(i, 'W');
+
+				Toast toast = Toast.makeText(getApplicationContext(),
+						"Choose A Color", Toast.LENGTH_SHORT);
 				toast.show();
 			}
 		});
-		
+
 		final Button button4 = (Button) findViewById(R.id.button4);
 		button4.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				int i =3;
 				if (flags[0]) {
 					button4.setBackgroundColor(Color.RED);
-				}
-				else if (flags[1]){
+					Cube.setColor(i, 'R');
+				} else if (flags[1]) {
 					button4.setBackgroundColor(Color.MAGENTA);
-				}
-				else if (flags[2]){
+					Cube.setColor(i, 'O');
+				} else if (flags[2]) {
 					button4.setBackgroundColor(Color.YELLOW);
-				}
-				else if (flags[3]){
+					Cube.setColor(i, 'Y');
+				} else if (flags[3]) {
 					button4.setBackgroundColor(Color.GREEN);
-				}
-				else if (flags[4]){
+					Cube.setColor(i, 'G');
+				} else if (flags[4]) {
 					button4.setBackgroundColor(Color.BLUE);
-				}
-				else button4.setBackgroundColor(Color.WHITE);
-				
-				Toast toast = Toast.makeText(getApplicationContext(), "Choose a Color", Toast.LENGTH_SHORT);
+					Cube.setColor(i, 'B');
+				} else
+					button4.setBackgroundColor(Color.WHITE);
+				Cube.setColor(i, 'W');
+
+				Toast toast = Toast.makeText(getApplicationContext(),
+						"Choose A Color", Toast.LENGTH_SHORT);
 				toast.show();
 			}
 		});
-		
+
 		final Button button5 = (Button) findViewById(R.id.button5);
 		button5.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				int i =4;
 				if (flags[0]) {
 					button5.setBackgroundColor(Color.RED);
-				}
-				else if (flags[1]){
+					Cube.setColor(i, 'R');
+				} else if (flags[1]) {
 					button5.setBackgroundColor(Color.MAGENTA);
-				}
-				else if (flags[2]){
+					Cube.setColor(i, 'O');
+				} else if (flags[2]) {
 					button5.setBackgroundColor(Color.YELLOW);
-				}
-				else if (flags[3]){
+					Cube.setColor(i, 'Y');
+				} else if (flags[3]) {
 					button5.setBackgroundColor(Color.GREEN);
-				}
-				else if (flags[4]){
+					Cube.setColor(i, 'G');
+				} else if (flags[4]) {
 					button5.setBackgroundColor(Color.BLUE);
-				}
-				else button5.setBackgroundColor(Color.WHITE);
-				
-				Toast toast = Toast.makeText(getApplicationContext(), "Choose a Color", Toast.LENGTH_SHORT);
+					Cube.setColor(i, 'B');
+				} else
+					button5.setBackgroundColor(Color.WHITE);
+				Cube.setColor(i, 'W');
+
+				Toast toast = Toast.makeText(getApplicationContext(),
+						"Choose A Color", Toast.LENGTH_SHORT);
 				toast.show();
 			}
 		});
-		
+
 		final Button button6 = (Button) findViewById(R.id.button6);
 		button6.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				int i =5;
 				if (flags[0]) {
 					button6.setBackgroundColor(Color.RED);
-				}
-				else if (flags[1]){
+					Cube.setColor(i, 'R');
+				} else if (flags[1]) {
 					button6.setBackgroundColor(Color.MAGENTA);
-				}
-				else if (flags[2]){
+					Cube.setColor(i, 'O');
+				} else if (flags[2]) {
 					button6.setBackgroundColor(Color.YELLOW);
-				}
-				else if (flags[3]){
+					Cube.setColor(i, 'Y');
+				} else if (flags[3]) {
 					button6.setBackgroundColor(Color.GREEN);
-				}
-				else if (flags[4]){
+					Cube.setColor(i, 'G');
+				} else if (flags[4]) {
 					button6.setBackgroundColor(Color.BLUE);
-				}
-				else button6.setBackgroundColor(Color.WHITE);
-				
-				Toast toast = Toast.makeText(getApplicationContext(), "Choose a Color", Toast.LENGTH_SHORT);
+					Cube.setColor(i, 'B');
+				} else
+					button6.setBackgroundColor(Color.WHITE);
+				Cube.setColor(i, 'W');
+
+				Toast toast = Toast.makeText(getApplicationContext(),
+						"Choose A Color", Toast.LENGTH_SHORT);
 				toast.show();
 			}
 		});
-		
+
 		final Button button7 = (Button) findViewById(R.id.button7);
 		button7.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				int i =6;
 				if (flags[0]) {
 					button7.setBackgroundColor(Color.RED);
-				}
-				else if (flags[1]){
+					Cube.setColor(i, 'R');
+				} else if (flags[1]) {
 					button7.setBackgroundColor(Color.MAGENTA);
-				}
-				else if (flags[2]){
+					Cube.setColor(i, 'O');
+				} else if (flags[2]) {
 					button7.setBackgroundColor(Color.YELLOW);
-				}
-				else if (flags[3]){
+					Cube.setColor(i, 'Y');
+				} else if (flags[3]) {
 					button7.setBackgroundColor(Color.GREEN);
-				}
-				else if (flags[4]){
+					Cube.setColor(i, 'G');
+				} else if (flags[4]) {
 					button7.setBackgroundColor(Color.BLUE);
-				}
-				else button7.setBackgroundColor(Color.WHITE);
-				
-				Toast toast = Toast.makeText(getApplicationContext(), "Choose a Color", Toast.LENGTH_SHORT);
+					Cube.setColor(i, 'B');
+				} else
+					button7.setBackgroundColor(Color.WHITE);
+				Cube.setColor(i, 'W');
+
+				Toast toast = Toast.makeText(getApplicationContext(),
+						"Choose A Color", Toast.LENGTH_SHORT);
 				toast.show();
 			}
 		});
-		
+
 		final Button button8 = (Button) findViewById(R.id.button8);
 		button8.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				int i =7;
 				if (flags[0]) {
 					button8.setBackgroundColor(Color.RED);
-				}
-				else if (flags[1]){
+					Cube.setColor(i, 'R');
+				} else if (flags[1]) {
 					button8.setBackgroundColor(Color.MAGENTA);
-				}
-				else if (flags[2]){
+					Cube.setColor(i, 'O');
+				} else if (flags[2]) {
 					button8.setBackgroundColor(Color.YELLOW);
-				}
-				else if (flags[3]){
+					Cube.setColor(i, 'Y');
+				} else if (flags[3]) {
 					button8.setBackgroundColor(Color.GREEN);
-				}
-				else if (flags[4]){
+					Cube.setColor(i, 'G');
+				} else if (flags[4]) {
 					button8.setBackgroundColor(Color.BLUE);
-				}
-				else button8.setBackgroundColor(Color.WHITE);
-				
-				Toast toast = Toast.makeText(getApplicationContext(), "Choose a Color", Toast.LENGTH_SHORT);
+					Cube.setColor(i, 'B');
+				} else
+					button8.setBackgroundColor(Color.WHITE);
+				Cube.setColor(i, 'W');
+
+				Toast toast = Toast.makeText(getApplicationContext(),
+						"Choose A Color", Toast.LENGTH_SHORT);
 				toast.show();
 			}
 		});
-		
+
 		final Button button9 = (Button) findViewById(R.id.button9);
 		button9.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				int i =8;
 				if (flags[0]) {
 					button9.setBackgroundColor(Color.RED);
-				}
-				else if (flags[1]){
+					Cube.setColor(i, 'R');
+				} else if (flags[1]) {
 					button9.setBackgroundColor(Color.MAGENTA);
-				}
-				else if (flags[2]){
+					Cube.setColor(i, 'O');
+				} else if (flags[2]) {
 					button9.setBackgroundColor(Color.YELLOW);
-				}
-				else if (flags[3]){
+					Cube.setColor(i, 'Y');
+				} else if (flags[3]) {
 					button9.setBackgroundColor(Color.GREEN);
-				}
-				else if (flags[4]){
+					Cube.setColor(i, 'G');
+				} else if (flags[4]) {
 					button9.setBackgroundColor(Color.BLUE);
-				}
-				else button9.setBackgroundColor(Color.WHITE);
-				
-				Toast toast = Toast.makeText(getApplicationContext(), "Choose a Color", Toast.LENGTH_SHORT);
+					Cube.setColor(i, 'B');
+				} else
+					button9.setBackgroundColor(Color.WHITE);
+				Cube.setColor(i, 'W');
+
+				Toast toast = Toast.makeText(getApplicationContext(),
+						"Choose A Color", Toast.LENGTH_SHORT);
 				toast.show();
 			}
 		});
 	}
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

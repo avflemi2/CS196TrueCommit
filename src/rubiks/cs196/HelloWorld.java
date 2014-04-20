@@ -217,16 +217,15 @@ public class HelloWorld extends Activity {
 				sun.setIntensity(250, 250, 250);
 
 				// Create a texture out of the icon...:-)
-				// Texture texture = new
-				// Texture(BitmapHelper.rescale(BitmapHelper.convert(getResources().getDrawable(R.drawable.grid)),
-				// 64, 64));
-				// TextureManager.getInstance().addTexture("faces.png",
-				// texture);
+				Texture texture = new Texture(BitmapHelper.rescale(
+						BitmapHelper.convert(getResources().getDrawable(
+								R.drawable.grid)), 64, 64));
+				TextureManager.getInstance().addTexture("cube1.png", texture);
 
 				cube = Primitives.getCube(10);
-				cube.calcTextureWrapSpherical();
-				cube.setAdditionalColor(208, 0, 0);
-				// cube.setTexture("faces.png");
+				cube.calcTextureWrap();
+				//cube.setAdditionalColor(208, 0, 0);
+				cube.setTexture("cube1.png");
 				cube.strip();
 				cube.build();
 
@@ -234,15 +233,17 @@ public class HelloWorld extends Activity {
 				cube.translate(0f, 0f, 0f);
 				world.addObject(cube);
 
+				solveCube.run(getApplicationContext());
+
 				cube2 = Primitives.getCube(10);
-				cube2.calcTextureWrapSpherical();
-				cube2.setAdditionalColor(0, 0, 208);
-				// cube.setTexture("faces.png");
+				cube2.calcTextureWrap();
+				//cube2.setAdditionalColor(0, 0, 208);
+				cube2.setTexture("cube1.png");
 				cube2.strip();
 				cube2.build();
 
 				cube2.scale(0.5f);
-				cube.translate(0f, 12f, 0f);
+				cube2.translate(0f, 12f, 0f);
 				world.addObject(cube2);
 
 				Camera cam = world.getCamera();
