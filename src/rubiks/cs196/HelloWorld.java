@@ -42,6 +42,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -79,7 +80,6 @@ public class HelloWorld extends Activity {
 	private float xpos = -1;
 	private float ypos = -1;
 
-	private Object3D cube = null;
 	private Object3D centerCube = null;
 	private int fps = 0;
 
@@ -192,6 +192,20 @@ public class HelloWorld extends Activity {
 
 		return super.onTouchEvent(me);
 	}
+	
+	//trying to sync threads
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+            mGLView.queueEvent(new Runnable() {
+                // This method will be called on the rendering
+                // thread:
+                public void run() {
+                    renderer.makeExtra();
+                }});
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
 	protected boolean isFullscreenOpaque() {
 		return true;
@@ -292,7 +306,7 @@ public class HelloWorld extends Activity {
 			Object3D[] Cubies = new Object3D[Cubelets.number];
 			for (int i = 0; i < Cubies.length; i++) {
 				Cubies[i] = Primitives.getCube(5);
-				//Cubies[i]=load3DS("cube0.3ds",5.0);
+				// Cubies[i]=load3DS("cube0.3ds",5.0);
 				Cubies[i].rotateY((float) (Math.PI / 4.0)); // offset
 				Cubies[i].scale(2.0f);
 				Cubies[i].translate(Cubelets.getCoords(i));
@@ -309,5 +323,29 @@ public class HelloWorld extends Activity {
 			}
 		}
 
+		public void makeExtra(){
+			Object3D tst = Primitives.getCube(10);
+			tst.rotateY((float) (Math.PI / 4.0)); // cube primitive is
+			tst.translate(30, 30, 30);
+			tst.addParent(centerCube);
+			// offset
+			tst.calcTextureWrap();
+			// cube2.setAdditionalColor(0, 0, 208);
+			tst.setTexture("cube1.png");
+			tst.strip();
+			tst.build();
+
+			tst.scale(0.5f);
+			world.addObject(tst);
+
+			SimpleVector sv = new SimpleVector();
+			sv.set(tst.getTransformedCenter());
+			sv.y -= 100;
+			sv.z -= 100;
+			sun.setPosition(sv);
+			MemoryHelper.compact();
+			
+		}
+		
 	}
 }

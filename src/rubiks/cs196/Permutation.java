@@ -1,5 +1,6 @@
 package rubiks.cs196;
 
+import rubiks.cs196.HelloWorld.MyRenderer;
 import android.content.Context;
 
 /**
@@ -59,11 +60,24 @@ public class Permutation extends Cube {
 				failMsg += "face " + i + ", " + fail + "\n";
 		}
 		if (failMsg.length() > 0)
-			new Message("perm duplicates at: " + failMsg,cntxt);
+			new Message("perm duplicates at: " + failMsg, cntxt);
 	}
 
 	// rotates @face counter-clockwise once
+	// rotates 3d cube
 	protected static void rotateCCW(int face) {
+		Cubelets.rotateCCW(face);
+		char[] newCube = new char[size];
+		for (int i = 0; i < size; i++) {
+			// value in cube goes new address stated in perm
+			newCube[perm[face][i]] = cube[i];
+		}
+		cube = newCube;
+	}
+
+	// rotates @face counter-clockwise once
+	// does not rotate 3d cube
+	protected static void rotateCCW2(int face) {
 		char[] newCube = new char[size];
 		for (int i = 0; i < size; i++) {
 			// value in cube goes new address stated in perm
@@ -73,16 +87,18 @@ public class Permutation extends Cube {
 	}
 
 	// rotates @face clockwise once
+	// rotates 3d cube
 	protected static void rotateCW(int face) {
-		rotateCCW(face);
-		rotateCCW(face);
-		rotateCCW(face);
+		rotateCCW2(face);
+		rotateCCW2(face);
+		rotateCCW2(face);
 	}
 
 	// rotates @face clockwise twice
+	// rotates 3d cube
 	protected static void rotate180(int face) {
-		rotateCW(face);
-		rotateCW(face);
+		rotateCCW(face);
+		rotateCCW(face);
 	}
 
 	// finds duplicate permutation values
