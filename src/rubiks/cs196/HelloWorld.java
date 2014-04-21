@@ -167,8 +167,8 @@ public class HelloWorld extends Activity {
 		if (me.getAction() == MotionEvent.ACTION_DOWN) {
 			xpos = me.getX();
 			ypos = me.getY();
-			
-			if (ypos < o_height+100) {
+
+			if (ypos < o_height + 100) {
 				mGLView.queueEvent(new Runnable() {
 					// This method will be called on the rendering
 					// thread:
@@ -177,7 +177,7 @@ public class HelloWorld extends Activity {
 					}
 				});
 			}
-			
+
 			return true;
 		}
 
@@ -256,7 +256,7 @@ public class HelloWorld extends Activity {
 						BitmapHelper.convert(getResources().getDrawable(
 								R.drawable.grid)), 64, 64));
 				TextureManager.getInstance().addTexture("cube1.png", texture);
-
+				
 				createCube();
 
 				/***** solveCube *****/
@@ -280,7 +280,7 @@ public class HelloWorld extends Activity {
 		}
 
 		public void onDrawFrame(GL10 gl) {
-
+			
 			if (touchTurn != 0) {
 				centerCube.rotateY(touchTurn);
 				touchTurn = 0;
@@ -293,9 +293,9 @@ public class HelloWorld extends Activity {
 
 			fb.clear(back);
 			world.renderScene(fb);
-			world.draw(fb);
+			world.draw(fb);		
 			fb.display();
-
+			
 			if (System.currentTimeMillis() - time >= 1000) {
 				Logger.log(fps + "fps");
 				fps = 0;
