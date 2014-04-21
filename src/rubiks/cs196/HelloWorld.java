@@ -35,6 +35,7 @@ import com.threed.jpct.TextureManager;
 import com.threed.jpct.World;
 import com.threed.jpct.util.BitmapHelper;
 import com.threed.jpct.util.MemoryHelper;
+import com.threed.jpct.util.Overlay;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -81,9 +82,14 @@ public class HelloWorld extends Activity {
 	private float ypos = -1;
 
 	private Object3D centerCube = null;
+	private Object3D tst = null;
 	private int fps = 0;
 
 	private Light sun = null;
+
+	// overlay
+	private int o_width = 500;
+	private int o_height = 150;
 
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -161,6 +167,17 @@ public class HelloWorld extends Activity {
 		if (me.getAction() == MotionEvent.ACTION_DOWN) {
 			xpos = me.getX();
 			ypos = me.getY();
+			
+			if (ypos < o_height+100) {
+				mGLView.queueEvent(new Runnable() {
+					// This method will be called on the rendering
+					// thread:
+					public void run() {
+						renderer.makeExtra();
+					}
+				});
+			}
+			
 			return true;
 		}
 
@@ -182,6 +199,7 @@ public class HelloWorld extends Activity {
 			touchTurn = xd / -100f;
 			touchTurnUp = yd / -100f;
 			return true;
+
 		}
 
 		try {
@@ -192,20 +210,21 @@ public class HelloWorld extends Activity {
 
 		return super.onTouchEvent(me);
 	}
-	
-	//trying to sync threads
+
+	// trying to sync threads
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
-            mGLView.queueEvent(new Runnable() {
-                // This method will be called on the rendering
-                // thread:
-                public void run() {
-                    renderer.makeExtra();
-                }});
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
+		if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+			mGLView.queueEvent(new Runnable() {
+				// This method will be called on the rendering
+				// thread:
+				public void run() {
+					renderer.makeExtra();
+				}
+			});
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
 
 	protected boolean isFullscreenOpaque() {
 		return true;
@@ -246,6 +265,9 @@ public class HelloWorld extends Activity {
 				Camera cam = world.getCamera();
 				cam.moveCamera(Camera.CAMERA_MOVEOUT, 50);
 				cam.lookAt(centerCube.getTransformedCenter());
+
+				Overlay myMessages = new Overlay(world, 0, 0, o_width,
+						o_height, "cube1.png");
 
 				if (master == null) {
 					Logger.log("Saving master Activity!");
@@ -323,8 +345,13 @@ public class HelloWorld extends Activity {
 			}
 		}
 
-		public void makeExtra(){
-			Object3D tst = Primitives.getCube(10);
+		public void makeExtra() {
+			if (tst != null) {
+				world.removeObject(tst);
+				tst = null;
+				return;
+			}
+			tst = Primitives.getCube(10);
 			tst.rotateY((float) (Math.PI / 4.0)); // cube primitive is
 			tst.translate(30, 30, 30);
 			tst.addParent(centerCube);
@@ -344,8 +371,8 @@ public class HelloWorld extends Activity {
 			sv.z -= 100;
 			sun.setPosition(sv);
 			MemoryHelper.compact();
-			
+
 		}
-		
+
 	}
 }
