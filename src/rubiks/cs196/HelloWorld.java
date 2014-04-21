@@ -1,5 +1,6 @@
 package rubiks.cs196;
 
+import java.io.FileInputStream;
 import java.lang.reflect.Field;
 
 import javax.microedition.khronos.egl.EGL10;
@@ -23,6 +24,7 @@ import android.widget.RelativeLayout;
 import com.threed.jpct.Camera;
 import com.threed.jpct.FrameBuffer;
 import com.threed.jpct.Light;
+import com.threed.jpct.Loader;
 import com.threed.jpct.Logger;
 import com.threed.jpct.Object3D;
 import com.threed.jpct.Primitives;
@@ -78,7 +80,7 @@ public class HelloWorld extends Activity {
 	private float ypos = -1;
 
 	private Object3D cube = null;
-	private Object3D cube2 = null;
+	private Object3D centerCube = null;
 	private int fps = 0;
 
 	private Light sun = null;
@@ -222,48 +224,14 @@ public class HelloWorld extends Activity {
 								R.drawable.grid)), 64, 64));
 				TextureManager.getInstance().addTexture("cube1.png", texture);
 
-				cube = Primitives.getCube(10);
-				cube.calcTextureWrap();
-				//cube.setAdditionalColor(208, 0, 0);
-				cube.setTexture("cube1.png");
-				cube.strip();
-				cube.build();
+				createCube();
 
-				cube.scale(0.5f);
-				cube.translate(0f, 0f, 0f);
-				world.addObject(cube);
-
+				/***** solveCube *****/
 				solveCube.run(getApplicationContext());
-
-				cube2 = Primitives.getCube(10);
-				cube2.calcTextureWrap();
-				//cube2.setAdditionalColor(0, 0, 208);
-				cube2.setTexture("cube1.png");
-				cube2.strip();
-				cube2.build();
-
-				cube2.scale(0.5f);
-				cube2.translate(0f, 12f, 0f);
-				world.addObject(cube2);
 
 				Camera cam = world.getCamera();
 				cam.moveCamera(Camera.CAMERA_MOVEOUT, 50);
-				cam.lookAt(cube.getTransformedCenter());
-				cam.lookAt(cube2.getTransformedCenter());
-
-				SimpleVector sv = new SimpleVector();
-				sv.set(cube.getTransformedCenter());
-				sv.y -= 100;
-				sv.z -= 100;
-				sun.setPosition(sv);
-				MemoryHelper.compact();
-
-				SimpleVector s2v = new SimpleVector();
-				s2v.set(cube2.getTransformedCenter());
-				s2v.y -= 100;
-				s2v.z -= 100;
-				sun.setPosition(s2v);
-				MemoryHelper.compact();
+				cam.lookAt(centerCube.getTransformedCenter());
 
 				if (master == null) {
 					Logger.log("Saving master Activity!");
@@ -276,15 +244,14 @@ public class HelloWorld extends Activity {
 		}
 
 		public void onDrawFrame(GL10 gl) {
+
 			if (touchTurn != 0) {
-				cube.rotateY(touchTurn);
-				cube2.rotateY(touchTurn);
+				centerCube.rotateY(touchTurn);
 				touchTurn = 0;
 			}
 
 			if (touchTurnUp != 0) {
-				cube.rotateX(touchTurnUp);
-				cube2.rotateX(touchTurnUp);
+				centerCube.rotateX(touchTurnUp);
 				touchTurnUp = 0;
 			}
 
@@ -300,5 +267,47 @@ public class HelloWorld extends Activity {
 			}
 			fps++;
 		}
+
+		public void createCube() {
+
+			centerCube = Primitives.getCube(10);
+			centerCube.rotateY((float) (Math.PI / 4.0)); // cube primitive is
+															// offset
+			centerCube.calcTextureWrap();
+			// cube2.setAdditionalColor(0, 0, 208);
+			centerCube.setTexture("cube1.png");
+			centerCube.strip();
+			centerCube.build();
+
+			centerCube.scale(0.5f);
+			world.addObject(centerCube);
+
+			SimpleVector sv = new SimpleVector();
+			sv.set(centerCube.getTransformedCenter());
+			sv.y -= 100;
+			sv.z -= 100;
+			sun.setPosition(sv);
+			MemoryHelper.compact();
+
+			Object3D[] Cubies = new Object3D[Cubelets.number];
+			for (int i = 0; i < Cubies.length; i++) {
+				Cubies[i] = Primitives.getCube(5);
+				//Cubies[i]=load3DS("cube0.3ds",5.0);
+				Cubies[i].rotateY((float) (Math.PI / 4.0)); // offset
+				Cubies[i].scale(2.0f);
+				Cubies[i].translate(Cubelets.getCoords(i));
+				Cubies[i].calcTextureWrap();
+				Cubies[i].setTexture("cube1.png");
+				Cubies[i].addParent(centerCube);
+				Cubies[i].strip();
+				Cubies[i].build();
+				world.addObject(Cubies[i]);
+
+				// set new axes for rotating entire cube
+				// centerCube.setRotationPivot(new SimpleVector(20,0,0));
+				// centerCube.setOrigin(new SimpleVector(-20,0,0));
+			}
+		}
+
 	}
 }
