@@ -1,6 +1,5 @@
 package rubiks.cs196;
 /**
- * Cube superclass
  * defines variables for colors, faces, orientations
  * defines basic methods done on cube array
  */
