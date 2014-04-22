@@ -6,15 +6,10 @@ package rubiks.cs196;
 
 public class Cube {
 
-
 	public static String completeCube = "GGGGGGGGGRRRRRRRRRBBBBBBBBBOOOOOOOOOWWWWWWWWWYYYYYYYYY";
 	
-	// cube array holds first letter of colors
-	protected static char[] cube = { 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'R',
-		'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'B', 'B', 'B', 'B', 'B',
-		'B', 'B', 'B', 'B', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O',
-		'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'Y', 'Y', 'Y', 'Y',
-		'Y', 'Y', 'Y', 'Y', 'Y' };
+	protected static char[] cube = "ZZZZGZZZZZZZZRZZZZZZZZBZZZZZZZZOZZZZZZZZWZZZZZZZZYZZZZ".toCharArray();
+		
 	protected static int size = cube.length;
 	
 	// orientation (used to employ algorithms relative to current orientation)
@@ -50,6 +45,8 @@ public class Cube {
 	
 	// @return char color at @index
 	protected static char getColor(int index) {
+		if (cube[index] == 'Z')
+			throw new RuntimeException("NO COLOR AT INDEX");
 		return cube[index];
 	}
 	

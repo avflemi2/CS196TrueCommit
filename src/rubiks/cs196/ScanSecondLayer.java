@@ -21,19 +21,22 @@ public class ScanSecondLayer extends Scanner {
 	// contains whether pairs are equal for each face g, r, b, o
 	private static boolean[] flags = new boolean[4];
 
-	public static void run(Context cntxt) {
+	public static void run(Context context) {
 
 		// base case
 		if (sameFacesSecondLayer()) {
-			new Message("All faces aligned!",cntxt);
+			new Message("All faces aligned!",context);
 			return;
 		}
 
 		// ryanheise case 3
-		int i = forceOut();
-		if (i != -1) {
-			Cube.setOrientation(i);
-			Algorithms.secondLayer(3);
+		int i = 0;
+		while (i != -1) {
+			i = forceOut();
+			if (i != -1) {
+				Cube.setOrientation(i);
+				Algorithms.secondLayer(3);
+			}
 		}
 
 		// ryanheise case 1 and 2
@@ -41,6 +44,10 @@ public class ScanSecondLayer extends Scanner {
 			setFlags();
 			alignTop();
 			Cube.setOrientation(orient());
+			if (sameFaces() > 1) {
+				if (isWhite(topEdges[Cube.FRONT]))
+					Cube.setOrientation(orientReverse());
+			}
 		} while (isWhite(topEdges[Cube.FRONT])); // if the corresponding top
 													// edge cube is white, try
 													// again
@@ -49,7 +56,7 @@ public class ScanSecondLayer extends Scanner {
 		else
 			Algorithms.secondLayer(2);
 
-		run(cntxt);
+		run(context);
 
 	}
 
@@ -80,6 +87,15 @@ public class ScanSecondLayer extends Scanner {
 	private static int orient() {
 		setFlags();
 		for (int i = 0; i < flags.length; i++) {
+			if (flags[i])
+				return i;
+		}
+		return -1;
+	}
+
+	private static int orientReverse() {
+		setFlags();
+		for (int i = flags.length-1; i > -1; i--) {
 			if (flags[i])
 				return i;
 		}

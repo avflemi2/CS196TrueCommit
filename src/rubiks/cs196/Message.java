@@ -1,6 +1,7 @@
 package rubiks.cs196;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 public class Message {
@@ -15,6 +16,7 @@ public class Message {
 	
 	public String print(){
 		//print to android here
+		Log.i("solveRubik",message);
 		return message;
 	}
 	

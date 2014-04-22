@@ -10,17 +10,17 @@ public class ScanCrossPieces extends Scanner {
 	private static boolean[] flags = new boolean[4];
 
 	// run the method
-	public static void run(Context cntxt) {
+	public static void run(Context context) {
 		setFlags();
 		if (sameFaces() == 4) {
-			new Message("All faces aligned!",cntxt);
+			new Message("All faces aligned!",context);
 			return;
 		}
 		new Message("Rotate the yellow cross until some of the colours "
 				+ "around the sides begin to match. If you get it so "
 				+ "that one colour matches, keep rotating futher. "
 				+ "It is always possible to get at least 2 colours "
-				+ "to match",cntxt);
+				+ "to match",context);
 		alignBottom();
 		if (isAdjacent()) {
 			Cube.setOrientation(orientAdjacent());
@@ -61,7 +61,7 @@ public class ScanCrossPieces extends Scanner {
 		if (!flags[0] && !flags[3])
 			return 3;
 		for (int i = 0; i < flags.length; i++) {
-			if (flags[i])
+			if (!flags[i])
 				return i;
 		}
 		return -1;
@@ -70,7 +70,7 @@ public class ScanCrossPieces extends Scanner {
 	private static boolean isAdjacent() {
 		setFlags();
 		for (int i = 0; i < flags.length - 1; i++) {
-			if (flags[i] && flags[i + 1])
+			if ((flags[i] && flags[i + 1]) || (flags[0] && flags[3]))
 				return true;
 		}
 		return false;

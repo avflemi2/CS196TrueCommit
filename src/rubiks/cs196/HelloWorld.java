@@ -259,15 +259,15 @@ public class HelloWorld extends Activity {
 				
 				createCube();
 
-				/***** solveCube *****/
-				solveCube.run(getApplicationContext());
-
 				Camera cam = world.getCamera();
 				cam.moveCamera(Camera.CAMERA_MOVEOUT, 50);
 				cam.lookAt(centerCube.getTransformedCenter());
 
 				Overlay myMessages = new Overlay(world, 0, 0, o_width,
 						o_height, "cube1.png");
+				
+				/***** solveCube *****/
+				solveCube.run(getApplicationContext());
 
 				if (master == null) {
 					Logger.log("Saving master Activity!");

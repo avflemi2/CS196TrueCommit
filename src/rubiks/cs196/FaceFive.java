@@ -12,56 +12,57 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class FaceFive extends Activity {
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
-		
+
 		RelativeLayout rel = (RelativeLayout) findViewById(R.id.rel1);
 		rel.setBackgroundColor(Color.BLACK);
-		
+
 		final Button button1 = (Button) findViewById(R.id.button1);
-		
+
 		Button next = (Button) findViewById(R.id.next);
-		
+
 		next.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
-				Intent intent = new Intent(getApplicationContext(), FaceSix.class);
+
+				Intent intent = new Intent(getApplicationContext(),
+						FaceSix.class);
 				startActivity(intent);
-				
+
 			}
 		});
-		
-		
+
 		final Button buttonR = (Button) findViewById(R.id.buttonred);
 		buttonR.setBackgroundColor(Color.RED);
-		
+
 		final Button buttonB = (Button) findViewById(R.id.buttonblue);
 		buttonB.setBackgroundColor(Color.BLUE);
-		
+
 		final Button buttonG = (Button) findViewById(R.id.buttongreen);
 		buttonG.setBackgroundColor(Color.GREEN);
-		
+
 		final Button buttonP = (Button) findViewById(R.id.buttonpink);
-		buttonP.setBackgroundColor(Color.MAGENTA);
-		
+		buttonP.setBackgroundColor(Home.ORANGE);
+
 		final Button buttonY = (Button) findViewById(R.id.buttonyellow);
 		buttonY.setBackgroundColor(Color.YELLOW);
-		
+
 		final Button buttonW = (Button) findViewById(R.id.buttonwhite);
 		buttonW.setBackgroundColor(Color.WHITE);
-		
-		//Flag 0 is red, 1 is pink, 2 is yellow, 3 is green, 4 is blue, 5 is white
+
+		// Flag 0 is red, 1 is pink, 2 is yellow, 3 is green, 4 is blue, 5 is
+		// white
 		final boolean[] flags = new boolean[6];
 
-		buttonR.setOnClickListener(new OnClickListener(){
+		buttonR.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View v){
+			public void onClick(View v) {
 				flags[0] = new Boolean(true);
 				flags[1] = new Boolean(false);
 				flags[2] = new Boolean(false);
@@ -71,10 +72,10 @@ public class FaceFive extends Activity {
 
 			}
 		});
-		
-		buttonP.setOnClickListener(new OnClickListener(){
+
+		buttonP.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View v){
+			public void onClick(View v) {
 				flags[0] = new Boolean(false);
 				flags[1] = new Boolean(true);
 				flags[2] = new Boolean(false);
@@ -84,10 +85,10 @@ public class FaceFive extends Activity {
 
 			}
 		});
-		
-		buttonY.setOnClickListener(new OnClickListener(){
+
+		buttonY.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View v){
+			public void onClick(View v) {
 				flags[0] = new Boolean(false);
 				flags[1] = new Boolean(false);
 				flags[2] = new Boolean(true);
@@ -97,10 +98,10 @@ public class FaceFive extends Activity {
 
 			}
 		});
-		
-		buttonG.setOnClickListener(new OnClickListener(){
+
+		buttonG.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View v){
+			public void onClick(View v) {
 				flags[0] = new Boolean(false);
 				flags[1] = new Boolean(false);
 				flags[2] = new Boolean(false);
@@ -110,10 +111,10 @@ public class FaceFive extends Activity {
 
 			}
 		});
-		
-		buttonB.setOnClickListener(new OnClickListener(){
+
+		buttonB.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View v){
+			public void onClick(View v) {
 				flags[0] = new Boolean(false);
 				flags[1] = new Boolean(false);
 				flags[2] = new Boolean(false);
@@ -123,10 +124,10 @@ public class FaceFive extends Activity {
 
 			}
 		});
-		
-		buttonW.setOnClickListener(new OnClickListener(){
+
+		buttonW.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View v){
+			public void onClick(View v) {
 				flags[0] = new Boolean(false);
 				flags[1] = new Boolean(false);
 				flags[2] = new Boolean(false);
@@ -136,17 +137,17 @@ public class FaceFive extends Activity {
 
 			}
 		});
-	
+
 		button1.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				int i =36;
+				int i = 36;
 				if (flags[0]) {
 					button1.setBackgroundColor(Color.RED);
 					Cube.setColor(i, 'R');
 				} else if (flags[1]) {
-					button1.setBackgroundColor(Color.MAGENTA);
+					button1.setBackgroundColor(Home.ORANGE);
 					Cube.setColor(i, 'O');
 				} else if (flags[2]) {
 					button1.setBackgroundColor(Color.YELLOW);
@@ -157,10 +158,10 @@ public class FaceFive extends Activity {
 				} else if (flags[4]) {
 					button1.setBackgroundColor(Color.BLUE);
 					Cube.setColor(i, 'B');
-				} else
+				} else {
 					button1.setBackgroundColor(Color.WHITE);
-				Cube.setColor(i, 'W');
-
+					Cube.setColor(i, 'W');
+				}
 				Toast toast = Toast.makeText(getApplicationContext(),
 						"Choose A Color", Toast.LENGTH_SHORT);
 				toast.show();
@@ -172,12 +173,12 @@ public class FaceFive extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				int i =37;
+				int i = 37;
 				if (flags[0]) {
 					button2.setBackgroundColor(Color.RED);
 					Cube.setColor(i, 'R');
 				} else if (flags[1]) {
-					button2.setBackgroundColor(Color.MAGENTA);
+					button2.setBackgroundColor(Home.ORANGE);
 					Cube.setColor(i, 'O');
 				} else if (flags[2]) {
 					button2.setBackgroundColor(Color.YELLOW);
@@ -188,10 +189,10 @@ public class FaceFive extends Activity {
 				} else if (flags[4]) {
 					button2.setBackgroundColor(Color.BLUE);
 					Cube.setColor(i, 'B');
-				} else
+				} else {
 					button2.setBackgroundColor(Color.WHITE);
-				Cube.setColor(i, 'W');
-
+					Cube.setColor(i, 'W');
+				}
 				Toast toast = Toast.makeText(getApplicationContext(),
 						"Choose A Color", Toast.LENGTH_SHORT);
 				toast.show();
@@ -203,12 +204,12 @@ public class FaceFive extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				int i =38;
+				int i = 38;
 				if (flags[0]) {
 					button3.setBackgroundColor(Color.RED);
 					Cube.setColor(i, 'R');
 				} else if (flags[1]) {
-					button3.setBackgroundColor(Color.MAGENTA);
+					button3.setBackgroundColor(Home.ORANGE);
 					Cube.setColor(i, 'O');
 				} else if (flags[2]) {
 					button3.setBackgroundColor(Color.YELLOW);
@@ -219,10 +220,10 @@ public class FaceFive extends Activity {
 				} else if (flags[4]) {
 					button3.setBackgroundColor(Color.BLUE);
 					Cube.setColor(i, 'B');
-				} else
+				} else {
 					button3.setBackgroundColor(Color.WHITE);
-				Cube.setColor(i, 'W');
-
+					Cube.setColor(i, 'W');
+				}
 				Toast toast = Toast.makeText(getApplicationContext(),
 						"Choose A Color", Toast.LENGTH_SHORT);
 				toast.show();
@@ -234,12 +235,12 @@ public class FaceFive extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				int i =39;
+				int i = 39;
 				if (flags[0]) {
 					button4.setBackgroundColor(Color.RED);
 					Cube.setColor(i, 'R');
 				} else if (flags[1]) {
-					button4.setBackgroundColor(Color.MAGENTA);
+					button4.setBackgroundColor(Home.ORANGE);
 					Cube.setColor(i, 'O');
 				} else if (flags[2]) {
 					button4.setBackgroundColor(Color.YELLOW);
@@ -250,10 +251,10 @@ public class FaceFive extends Activity {
 				} else if (flags[4]) {
 					button4.setBackgroundColor(Color.BLUE);
 					Cube.setColor(i, 'B');
-				} else
+				} else {
 					button4.setBackgroundColor(Color.WHITE);
-				Cube.setColor(i, 'W');
-
+					Cube.setColor(i, 'W');
+				}
 				Toast toast = Toast.makeText(getApplicationContext(),
 						"Choose A Color", Toast.LENGTH_SHORT);
 				toast.show();
@@ -261,30 +262,11 @@ public class FaceFive extends Activity {
 		});
 
 		final Button button5 = (Button) findViewById(R.id.button5);
+		button5.setBackgroundColor(Color.WHITE);
 		button5.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				int i =40;
-				if (flags[0]) {
-					button5.setBackgroundColor(Color.RED);
-					Cube.setColor(i, 'R');
-				} else if (flags[1]) {
-					button5.setBackgroundColor(Color.MAGENTA);
-					Cube.setColor(i, 'O');
-				} else if (flags[2]) {
-					button5.setBackgroundColor(Color.YELLOW);
-					Cube.setColor(i, 'Y');
-				} else if (flags[3]) {
-					button5.setBackgroundColor(Color.GREEN);
-					Cube.setColor(i, 'G');
-				} else if (flags[4]) {
-					button5.setBackgroundColor(Color.BLUE);
-					Cube.setColor(i, 'B');
-				} else
-					button5.setBackgroundColor(Color.WHITE);
-				Cube.setColor(i, 'W');
-
 				Toast toast = Toast.makeText(getApplicationContext(),
 						"Choose A Color", Toast.LENGTH_SHORT);
 				toast.show();
@@ -296,12 +278,12 @@ public class FaceFive extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				int i =41;
+				int i = 41;
 				if (flags[0]) {
 					button6.setBackgroundColor(Color.RED);
 					Cube.setColor(i, 'R');
 				} else if (flags[1]) {
-					button6.setBackgroundColor(Color.MAGENTA);
+					button6.setBackgroundColor(Home.ORANGE);
 					Cube.setColor(i, 'O');
 				} else if (flags[2]) {
 					button6.setBackgroundColor(Color.YELLOW);
@@ -312,10 +294,10 @@ public class FaceFive extends Activity {
 				} else if (flags[4]) {
 					button6.setBackgroundColor(Color.BLUE);
 					Cube.setColor(i, 'B');
-				} else
+				} else {
 					button6.setBackgroundColor(Color.WHITE);
-				Cube.setColor(i, 'W');
-
+					Cube.setColor(i, 'W');
+				}
 				Toast toast = Toast.makeText(getApplicationContext(),
 						"Choose A Color", Toast.LENGTH_SHORT);
 				toast.show();
@@ -327,12 +309,12 @@ public class FaceFive extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				int i =42;
+				int i = 42;
 				if (flags[0]) {
 					button7.setBackgroundColor(Color.RED);
 					Cube.setColor(i, 'R');
 				} else if (flags[1]) {
-					button7.setBackgroundColor(Color.MAGENTA);
+					button7.setBackgroundColor(Home.ORANGE);
 					Cube.setColor(i, 'O');
 				} else if (flags[2]) {
 					button7.setBackgroundColor(Color.YELLOW);
@@ -343,10 +325,10 @@ public class FaceFive extends Activity {
 				} else if (flags[4]) {
 					button7.setBackgroundColor(Color.BLUE);
 					Cube.setColor(i, 'B');
-				} else
+				} else {
 					button7.setBackgroundColor(Color.WHITE);
-				Cube.setColor(i, 'W');
-
+					Cube.setColor(i, 'W');
+				}
 				Toast toast = Toast.makeText(getApplicationContext(),
 						"Choose A Color", Toast.LENGTH_SHORT);
 				toast.show();
@@ -358,12 +340,12 @@ public class FaceFive extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				int i =43;
+				int i = 43;
 				if (flags[0]) {
 					button8.setBackgroundColor(Color.RED);
 					Cube.setColor(i, 'R');
 				} else if (flags[1]) {
-					button8.setBackgroundColor(Color.MAGENTA);
+					button8.setBackgroundColor(Home.ORANGE);
 					Cube.setColor(i, 'O');
 				} else if (flags[2]) {
 					button8.setBackgroundColor(Color.YELLOW);
@@ -374,10 +356,10 @@ public class FaceFive extends Activity {
 				} else if (flags[4]) {
 					button8.setBackgroundColor(Color.BLUE);
 					Cube.setColor(i, 'B');
-				} else
+				} else {
 					button8.setBackgroundColor(Color.WHITE);
-				Cube.setColor(i, 'W');
-
+					Cube.setColor(i, 'W');
+				}
 				Toast toast = Toast.makeText(getApplicationContext(),
 						"Choose A Color", Toast.LENGTH_SHORT);
 				toast.show();
@@ -389,12 +371,12 @@ public class FaceFive extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				int i =44;
+				int i = 44;
 				if (flags[0]) {
 					button9.setBackgroundColor(Color.RED);
 					Cube.setColor(i, 'R');
 				} else if (flags[1]) {
-					button9.setBackgroundColor(Color.MAGENTA);
+					button9.setBackgroundColor(Home.ORANGE);
 					Cube.setColor(i, 'O');
 				} else if (flags[2]) {
 					button9.setBackgroundColor(Color.YELLOW);
@@ -405,17 +387,16 @@ public class FaceFive extends Activity {
 				} else if (flags[4]) {
 					button9.setBackgroundColor(Color.BLUE);
 					Cube.setColor(i, 'B');
-				} else
+				} else {
 					button9.setBackgroundColor(Color.WHITE);
-				Cube.setColor(i, 'W');
-
+					Cube.setColor(i, 'W');
+				}
 				Toast toast = Toast.makeText(getApplicationContext(),
 						"Choose A Color", Toast.LENGTH_SHORT);
 				toast.show();
 			}
 		});
 	}
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -424,4 +405,3 @@ public class FaceFive extends Activity {
 		return true;
 	}
 }
-
