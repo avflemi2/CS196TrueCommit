@@ -19,17 +19,18 @@ public class Cubelets {
 			new SimpleVector(0, -i, 0), new SimpleVector(0, -i, i),
 			new SimpleVector(0, 0, i) };
 	public static int number = coordinates.length;
-	
-	//indexes of center cubies g, r, b, o, w, y
-	private static int[] centerCubies = {26,10,22,1,24,20};
-	private static int[][] faceCubies = { {} };
+
+	// indexes of center cubies g, r, b, o, w, y
+	public static int[] centerCubies = { 25, 9, 21, 0, 23, 19 };
+	// indexes of connected cubies of faces (minus center cubies) g, r, b, o, w,
+	// y
+	public static int[][] faceCubies = { { 7, 24, 16, 8, 17, 1, 18, 10 },
+			{ 16, 15, 14, 17, 13, 10, 11, 12 },
+			{ 14, 22, 5, 13, 4, 12, 20, 3 }, { 5, 6, 7, 4, 8, 3, 2, 1 },
+			{ 5, 22, 14, 6, 15, 7, 24, 16 },
+			{ 1, 18, 10, 2, 11, 3, 20, 12 } };
 
 	public static SimpleVector getCoords(int i) {
 		return coordinates[i];
-	}
-	
-	
-	public static void rotateCCW(int face){
-		
 	}
 }

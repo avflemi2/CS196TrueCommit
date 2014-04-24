@@ -66,7 +66,7 @@ public class Permutation extends Cube {
 	// rotates @face counter-clockwise once
 	// rotates 3d cube
 	protected static void rotateCCW(int face) {
-		Cubelets.rotateCCW(face);
+		renderer.rotateCCW(face);
 		char[] newCube = new char[size];
 		for (int i = 0; i < size; i++) {
 			// value in cube goes new address stated in perm
@@ -89,6 +89,7 @@ public class Permutation extends Cube {
 	// rotates @face clockwise once
 	// rotates 3d cube
 	protected static void rotateCW(int face) {
+		renderer.rotateCW(face);
 		rotateCCW2(face);
 		rotateCCW2(face);
 		rotateCCW2(face);

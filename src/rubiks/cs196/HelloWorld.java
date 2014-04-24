@@ -70,7 +70,7 @@ public class HelloWorld extends Activity {
 	// GLSurfaceView mGLView = (GLSurfaceView)
 	// findViewById(R.id.graphics_glsurfaceview1);
 	private GLSurfaceView mGLView;
-	private MyRenderer renderer = null;
+	protected static MyRenderer renderer = null;
 	private FrameBuffer fb = null;
 	private World world = null;
 	private RGBColor back = new RGBColor(0, 0, 0);
@@ -81,6 +81,11 @@ public class HelloWorld extends Activity {
 	private float xpos = -1;
 	private float ypos = -1;
 
+	private float rotating = 0;
+	private double rotateAmount = .06;
+	private int globalFace = 0;
+	private Object3D myMiddleCube = null;
+	private Object3D[] Cubies = new Object3D[Cubelets.number];
 	private Object3D centerCube = null;
 	private Object3D tst = null;
 	private int fps = 0;
@@ -164,6 +169,7 @@ public class HelloWorld extends Activity {
 
 	public boolean onTouchEvent(MotionEvent me) {
 
+		// button at top
 		if (me.getAction() == MotionEvent.ACTION_DOWN) {
 			xpos = me.getX();
 			ypos = me.getY();
@@ -256,7 +262,7 @@ public class HelloWorld extends Activity {
 						BitmapHelper.convert(getResources().getDrawable(
 								R.drawable.grid)), 64, 64));
 				TextureManager.getInstance().addTexture("cube1.png", texture);
-				
+
 				createCube();
 
 				Camera cam = world.getCamera();
@@ -265,9 +271,6 @@ public class HelloWorld extends Activity {
 
 				Overlay myMessages = new Overlay(world, 0, 0, o_width,
 						o_height, "cube1.png");
-				
-				/***** solveCube *****/
-				solveCube.run(getApplicationContext());
 
 				if (master == null) {
 					Logger.log("Saving master Activity!");
@@ -280,7 +283,7 @@ public class HelloWorld extends Activity {
 		}
 
 		public void onDrawFrame(GL10 gl) {
-			
+
 			if (touchTurn != 0) {
 				centerCube.rotateY(touchTurn);
 				touchTurn = 0;
@@ -291,11 +294,26 @@ public class HelloWorld extends Activity {
 				touchTurnUp = 0;
 			}
 
+			if (rotating > 0) {
+				hitch(globalFace);
+				if (myMiddleCube.hasChild(Cubies[22]))
+					new Message("yeppppp",null);
+				else
+					new Message("nopeeee",null);
+				if (myMiddleCube != null) {
+					myMiddleCube.rotateAxis(Cubelets
+							.getCoords(Cubelets.centerCubies[globalFace]),
+							(float) (rotateAmount));
+				}
+				rotating -= rotateAmount;
+				unHitch(globalFace);
+			}
+
 			fb.clear(back);
 			world.renderScene(fb);
-			world.draw(fb);		
+			world.draw(fb);
 			fb.display();
-			
+
 			if (System.currentTimeMillis() - time >= 1000) {
 				Logger.log(fps + "fps");
 				fps = 0;
@@ -325,7 +343,6 @@ public class HelloWorld extends Activity {
 			sun.setPosition(sv);
 			MemoryHelper.compact();
 
-			Object3D[] Cubies = new Object3D[Cubelets.number];
 			for (int i = 0; i < Cubies.length; i++) {
 				Cubies[i] = Primitives.getCube(5);
 				// Cubies[i]=load3DS("cube0.3ds",5.0);
@@ -352,10 +369,9 @@ public class HelloWorld extends Activity {
 				return;
 			}
 			tst = Primitives.getCube(10);
-			tst.rotateY((float) (Math.PI / 4.0)); // cube primitive is
+			tst.rotateY((float) (Math.PI / 4.0)); // offset
 			tst.translate(30, 30, 30);
 			tst.addParent(centerCube);
-			// offset
 			tst.calcTextureWrap();
 			// cube2.setAdditionalColor(0, 0, 208);
 			tst.setTexture("cube1.png");
@@ -372,7 +388,41 @@ public class HelloWorld extends Activity {
 			sun.setPosition(sv);
 			MemoryHelper.compact();
 
+			/***** solveCube *****/
+			// solveCube.run(getApplicationContext());
+			rotateCCW(2);
 		}
 
+		public void rotateCCW(int face) {
+			globalFace = face;
+			rotating = (float) (Math.PI / 2);
+		}
+
+		public void rotateCW(int face) {
+			globalFace = face;
+			rotating = (float) (Math.PI / 2);
+		}
+
+		public void hitch(int face) {
+			myMiddleCube = Cubies[Cubelets.centerCubies[face]];
+			for (int i = 0; i < Cubelets.faceCubies[face].length; i++) {
+				// remove the face from centercube and add it to that face's
+				// middle cube
+				Object3D myCubie = Cubies[Cubelets.faceCubies[face][i]];
+				myCubie.removeParent(centerCube);
+				myCubie.addParent(myMiddleCube);
+			}
+		}
+
+		public void unHitch(int face) {
+			myMiddleCube = Cubies[Cubelets.centerCubies[face]];
+			for (int i = 0; i < Cubelets.faceCubies[face].length; i++) {
+				// remove the face from middle cube and add it to that face's
+				// center cube
+				Object3D myCubie = Cubies[Cubelets.faceCubies[face][i]];
+				myCubie.removeParent(myMiddleCube);
+				myCubie.addParent(centerCube);
+			}
+		}
 	}
 }

@@ -4,7 +4,7 @@ package rubiks.cs196;
  * defines basic methods done on cube array
  */
 
-public class Cube {
+public class Cube extends HelloWorld{
 
 	public static String completeCube = "GGGGGGGGGRRRRRRRRRBBBBBBBBBOOOOOOOOOWWWWWWWWWYYYYYYYYY";
 	

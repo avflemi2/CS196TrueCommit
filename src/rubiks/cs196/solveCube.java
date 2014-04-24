@@ -10,8 +10,9 @@ public class solveCube {
 		
 		new Message("Solving this cube:",cntxt);
 
-		//String stringCube = "YWYOGOGGBOGRGRBYRWBWWRBGRBGBBOWOWOOYOBWOWRGRBRYRYYYWYG";
-		//Cube.setTo(stringCube.toCharArray());
+		//COMMENT NEXT TWO LINES OUT IN ACTUAL CODE
+		String stringCube = "YWYOGOGGBOGRGRBYRWBWWRBGRBGBBOWOWOOYOBWOWRGRBRYRYYYWYG";
+		Cube.setTo(stringCube.toCharArray());
 		new Message(Cube.toString(true),cntxt);
 
 		new Message("STEP 2: SCANNING FOR CROSS PIECES",cntxt);
