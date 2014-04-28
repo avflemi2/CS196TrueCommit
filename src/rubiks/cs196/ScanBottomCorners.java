@@ -1,7 +1,4 @@
 package rubiks.cs196;
-
-import android.content.Context;
-
 public class ScanBottomCorners extends Scanner {
 	// contains any possible [positions of the yellow corners
 	private static int[] index = { 2, 9, 44, 11, 18, 38, 20, 27, 36, 29, 0, 42,
@@ -10,10 +7,10 @@ public class ScanBottomCorners extends Scanner {
 	// contains flags checking whether corners are correct gr, rb, bo, og
 	private static boolean[] yellowCorners = new boolean[4];
 
-	public static void run(Context context) {
+	public static void run() {
 		setFlags();
 		if (correctCorners()) {
-			new Message("All corners aligned!",context);
+			new Message("All corners aligned!");
 			return;
 		}
 		checkBottomCorners();
@@ -21,7 +18,7 @@ public class ScanBottomCorners extends Scanner {
 		while (!correctCorners()) {
 			placeCorner();
 		}
-		new Message("All corners aligned!",context);
+		new Message("All corners aligned!");
 	}
 
 	public static void setFlags() {
@@ -199,6 +196,7 @@ public class ScanBottomCorners extends Scanner {
 			else {
 				Cube.setOrientation(face);
 				while (!checkColumn(face)) {
+					new Message("There is a yellow corner on the top face. Rotate the top face around until the corner is directly above the position where it must be inserted.");
 					Algorithms.insertBottomCorners(2);
 				}
 				if (!yellowCorners[face]) {

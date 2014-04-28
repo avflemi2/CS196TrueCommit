@@ -1,7 +1,4 @@
 package rubiks.cs196;
-
-import android.content.Context;
-
 public class ScanCrossPieces extends Scanner {
 
 	private static int[] pairs = { 4, 7, 13, 16, 22, 25, 31, 34 };
@@ -10,22 +7,31 @@ public class ScanCrossPieces extends Scanner {
 	private static boolean[] flags = new boolean[4];
 
 	// run the method
-	public static void run(Context context) {
+	public static void run() {
 		setFlags();
 		if (sameFaces() == 4) {
-			new Message("All faces aligned!",context);
+			new Message("All 4 colors match!");
 			return;
 		}
-		new Message("Rotate the yellow cross until some of the colours "
-				+ "around the sides begin to match. If you get it so "
-				+ "that one colour matches, keep rotating futher. "
-				+ "It is always possible to get at least 2 colours "
-				+ "to match",context);
+		new Message("Rotate the yellow cross until you get two colors to match.");
 		alignBottom();
+		if (sameFaces() == 4) {
+			new Message("All 4 colors match!");
+			return;
+		}
+		new Message("You have two bad cross pieces. "
+				+ "You will need to swap them. There are "
+				+ "two different possibilities. Either the "
+				+ "two bad pieces are next to each other, "
+				+ "or they are on opposite sides of the cube.");
 		if (isAdjacent()) {
+			new Message("Your two bad pieces are next to "
+					+ "eachother.");
 			Cube.setOrientation(orientAdjacent());
 			Algorithms.swapCrossPieces(1);
 		} else {
+			new Message("Your two bad pieces are next to "
+					+ "on opposite sides of one another.");
 			Cube.setOrientation(orientOpposite());
 			Algorithms.swapCrossPieces(2);
 		}
@@ -53,6 +59,7 @@ public class ScanCrossPieces extends Scanner {
 		while (sameFaces() < 2) {
 			Algorithms.swapCrossPieces(3);
 		}
+		new Message("Two colors match!");
 	}
 
 	// returns face that will set orientation

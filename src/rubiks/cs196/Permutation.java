@@ -1,8 +1,4 @@
 package rubiks.cs196;
-
-import rubiks.cs196.HelloWorld.MyRenderer;
-import android.content.Context;
-
 /**
  * Permutation class
  * contains methods to alter cube and also contains the cube array
@@ -16,6 +12,8 @@ import android.content.Context;
  */
 
 public class Permutation extends Cube {
+
+	public static int moves = 0;
 
 	// permutations to rotate once clockwise
 	// each of 6 permutations is an array that contains the addresses that the
@@ -52,7 +50,7 @@ public class Permutation extends Cube {
 
 	// constructor checks for errors in the perms and cube config and generates
 	// error message
-	public Permutation(Context cntxt) {
+	public Permutation() {
 		String failMsg = "";
 		for (int i = 0; i < numFaces; i++) {
 			int fail = checkPerms();
@@ -60,23 +58,10 @@ public class Permutation extends Cube {
 				failMsg += "face " + i + ", " + fail + "\n";
 		}
 		if (failMsg.length() > 0)
-			new Message("perm duplicates at: " + failMsg, cntxt);
+			TextIO.putln("perm duplicates at: " + failMsg);
 	}
 
 	// rotates @face counter-clockwise once
-	// rotates 3d cube
-	protected static void rotateCCW(int face) {
-		renderer.rotateCCW(face);
-		char[] newCube = new char[size];
-		for (int i = 0; i < size; i++) {
-			// value in cube goes new address stated in perm
-			newCube[perm[face][i]] = cube[i];
-		}
-		cube = newCube;
-	}
-
-	// rotates @face counter-clockwise once
-	// does not rotate 3d cube
 	protected static void rotateCCW2(int face) {
 		char[] newCube = new char[size];
 		for (int i = 0; i < size; i++) {
@@ -86,20 +71,27 @@ public class Permutation extends Cube {
 		cube = newCube;
 	}
 
+	protected static void rotateCCW(int face) {
+		new Message("CCW\t" + Cube.faceToString(face));
+		moves++;
+		rotateCCW2(face);
+	}
+
 	// rotates @face clockwise once
-	// rotates 3d cube
 	protected static void rotateCW(int face) {
-		renderer.rotateCW(face);
+		new Message("CW\t" + Cube.faceToString(face));
+		moves++;
 		rotateCCW2(face);
 		rotateCCW2(face);
 		rotateCCW2(face);
 	}
 
 	// rotates @face clockwise twice
-	// rotates 3d cube
 	protected static void rotate180(int face) {
-		rotateCCW(face);
-		rotateCCW(face);
+		new Message("180\t" + Cube.faceToString(face));
+		moves++;
+		rotateCCW2(face);
+		rotateCCW2(face);
 	}
 
 	// finds duplicate permutation values

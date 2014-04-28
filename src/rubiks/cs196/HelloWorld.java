@@ -16,12 +16,14 @@ import android.graphics.Paint;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.GLUtils;
+import android.opengl.Matrix;
 import android.os.Bundle;
 import android.text.TextPaint;
 import android.view.MotionEvent;
 import android.widget.RelativeLayout;
 
 import com.threed.jpct.Camera;
+import com.threed.jpct.Config;
 import com.threed.jpct.FrameBuffer;
 import com.threed.jpct.Light;
 import com.threed.jpct.Loader;
@@ -98,6 +100,8 @@ public class HelloWorld extends Activity {
 
 	protected void onCreate(Bundle savedInstanceState) {
 
+		Config.maxParentObjects=3;
+		
 		Logger.log("onCreate");
 
 		if (master != null) {
@@ -296,15 +300,9 @@ public class HelloWorld extends Activity {
 
 			if (rotating > 0) {
 				hitch(globalFace);
-				if (myMiddleCube.hasChild(Cubies[22]))
-					new Message("yeppppp",null);
-				else
-					new Message("nopeeee",null);
-				if (myMiddleCube != null) {
-					myMiddleCube.rotateAxis(Cubelets
-							.getCoords(Cubelets.centerCubies[globalFace]),
-							(float) (rotateAmount));
-				}
+				myMiddleCube.rotateAxis(
+						Cubelets.getCoords(Cubelets.centerCubies[globalFace]),
+						(float) (rotateAmount));
 				rotating -= rotateAmount;
 				unHitch(globalFace);
 			}
@@ -355,10 +353,6 @@ public class HelloWorld extends Activity {
 				Cubies[i].strip();
 				Cubies[i].build();
 				world.addObject(Cubies[i]);
-
-				// set new axes for rotating entire cube
-				// centerCube.setRotationPivot(new SimpleVector(20,0,0));
-				// centerCube.setOrigin(new SimpleVector(-20,0,0));
 			}
 		}
 
@@ -406,22 +400,23 @@ public class HelloWorld extends Activity {
 		public void hitch(int face) {
 			myMiddleCube = Cubies[Cubelets.centerCubies[face]];
 			for (int i = 0; i < Cubelets.faceCubies[face].length; i++) {
-				// remove the face from centercube and add it to that face's
-				// middle cube
 				Object3D myCubie = Cubies[Cubelets.faceCubies[face][i]];
 				myCubie.removeParent(centerCube);
 				myCubie.addParent(myMiddleCube);
+				
+				com.threed.jpct.Matrix matr = new com.threed.jpct.Matrix();
+				matr.translate(new SimpleVector((float)Math.sin(rotating), -(float)Math.cos(rotating), 0));
+				myCubie.setTranslationMatrix(matr);
 			}
 		}
 
 		public void unHitch(int face) {
 			myMiddleCube = Cubies[Cubelets.centerCubies[face]];
 			for (int i = 0; i < Cubelets.faceCubies[face].length; i++) {
-				// remove the face from middle cube and add it to that face's
-				// center cube
 				Object3D myCubie = Cubies[Cubelets.faceCubies[face][i]];
 				myCubie.removeParent(myMiddleCube);
 				myCubie.addParent(centerCube);
+
 			}
 		}
 	}

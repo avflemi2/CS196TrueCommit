@@ -1,7 +1,4 @@
 package rubiks.cs196;
-
-import android.content.Context;
-
 public class ScanSecondLayer extends Scanner {
 
 	// indicies used by methods
@@ -21,11 +18,11 @@ public class ScanSecondLayer extends Scanner {
 	// contains whether pairs are equal for each face g, r, b, o
 	private static boolean[] flags = new boolean[4];
 
-	public static void run(Context context) {
+	public static void run() {
 
 		// base case
 		if (sameFacesSecondLayer()) {
-			new Message("All faces aligned!",context);
+			new Message("All faces aligned!");
 			return;
 		}
 
@@ -34,15 +31,20 @@ public class ScanSecondLayer extends Scanner {
 		while (i != -1) {
 			i = forceOut();
 			if (i != -1) {
+				new Message("There is a piece you must force out.");
 				Cube.setOrientation(i);
 				Algorithms.secondLayer(3);
 			}
 		}
 
+		//TextIO.putln(Cube.toString(true));
+		
 		// ryanheise case 1 and 2
 		do {
 			setFlags();
 			alignTop();
+			//TextIO.putln("aligned top");
+			//TextIO.putln(Cube.toString(true));
 			Cube.setOrientation(orient());
 			if (sameFaces() > 1) {
 				if (isWhite(topEdges[Cube.FRONT]))
@@ -56,7 +58,7 @@ public class ScanSecondLayer extends Scanner {
 		else
 			Algorithms.secondLayer(2);
 
-		run(context);
+		run();
 
 	}
 

@@ -54,6 +54,14 @@
             android:name="rubiks.cs196.Model"
             android:label="@string/app_name" >
         </activity>
+                <activity
+            android:name="rubiks.cs196.SolveComplete"
+            android:label="@string/app_name" >
+        </activity>
+                <activity
+            android:name="rubiks.cs196.Tutorial"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

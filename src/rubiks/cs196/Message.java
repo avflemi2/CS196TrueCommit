@@ -1,26 +1,42 @@
 package rubiks.cs196;
 
-import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
+import com.threed.jpct.Logger;
 
-public class Message {
+public class Message extends Tutorial{
 	private String message;
-	private Context context;
-	
-	public Message (String _msg, Context _cntxt ){
-		message = _msg;
-		context = _cntxt;
+	private final int maxLineLength = 80;
+
+	public Message(String msg) {
+		message = msg;
+		message = "> " + message;
+		wordWrap();
 		print();
 	}
-	
-	public String print(){
-		//print to android here
-		Log.i("solveRubik",message);
+
+	public String print() {
+		Logger.log(message);
+		Tutorial.msg = message;
+		pause();
 		return message;
 	}
+
+	public void pause(){
+		Tutorial.paused = true;
+		Logger.log("paused");
+		while (Tutorial.paused){
+		}
+	}
 	
-	public String getMessage(){
+	public void wordWrap() {
+		int i = 0;
+		while (i + maxLineLength < message.length() && (i = message.lastIndexOf(" ", i + maxLineLength)) != -1){
+			String prt1 = message.substring(0, i);
+			String prt2 = message.substring(i+1, message.length());
+			message = prt1 + '\n' + prt2;
+		}
+	}
+
+	public String getMessage() {
 		return message;
 	}
 }

@@ -10,5 +10,10 @@
     <string name="faces">My Cube</string>
     <string name="cube">Model</string>
     <string name="steps">Time to solve your cube!</string>
-
+    <string name="nextbutton">Start</string>
+    <string name="step1">Now we can start solving your cube!</string>
+    <string name="cancel">Cancel</string>
+    <string name="contin">Continue</string>
+    <string name="congrats">Congratulations! You have solved your cube!</string>
+    
 </resources>

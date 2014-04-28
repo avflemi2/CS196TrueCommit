@@ -1,21 +1,18 @@
 package rubiks.cs196;
-
-import android.content.Context;
-
 public class ScanTopCornersUp extends Scanner{
 	private static boolean[] whiteCorners = new boolean[4];
 	
-	public static void run(Context cntxt){
+	public static void run(){
 		Cube.setOrientation(0);
 		setFlags();
 		if (correctFlags() == 4) {
-			new Message("All corners aligned!",cntxt);
+			new Message("All corners aligned!");
 			return;
 		}
 		while (correctFlags() != 4) {
 			placeTopCorners();
 		}
-		new Message("All corners aligned!",cntxt);
+		new Message("All corners aligned!");
 	}
 	
 	public static void setFlags(){

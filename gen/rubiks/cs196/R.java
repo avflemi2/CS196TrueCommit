@@ -57,6 +57,8 @@ public final class R {
         public static final int face6=0x7f030005;
         public static final int menu=0x7f030006;
         public static final int model=0x7f030007;
+        public static final int solve_complete=0x7f030008;
+        public static final int tutorial=0x7f030009;
     }
     public static final class menu {
         public static final int home=0x7f070000;
@@ -64,11 +66,16 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
+        public static final int cancel=0x7f05000b;
+        public static final int congrats=0x7f05000d;
+        public static final int contin=0x7f05000c;
         public static final int cube=0x7f050007;
         public static final int face1=0x7f050003;
         public static final int faces=0x7f050006;
         public static final int hello_world=0x7f050002;
         public static final int next=0x7f050004;
+        public static final int nextbutton=0x7f050009;
+        public static final int step1=0x7f05000a;
         public static final int steps=0x7f050008;
         public static final int welcome=0x7f050005;
     }

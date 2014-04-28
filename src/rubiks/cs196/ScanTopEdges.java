@@ -1,7 +1,4 @@
 package rubiks.cs196;
-
-import android.content.Context;
-
 public class ScanTopEdges extends Scanner {
 
 	public static int[] topLayerCenter = { 1, 10, 19, 28 };
@@ -9,13 +6,15 @@ public class ScanTopEdges extends Scanner {
 
 	public static boolean[] flags = new boolean[4];
 
-	public static void run(Context cntxt) {
+	public static void run() {
 		setFlags();
 
 		// base case
-		if (countFlags() == 4) // FINISHED
+		if (countFlags() == 4){ // FINISHED
+			new Message("All Top Edges Aligned!");
 			return;
-
+		}
+		
 		if (countFlags() == 0) { // ryanheise case 3
 			Algorithms.makeCornersFaceUp(1);
 			Cube.setOrientation(Cube.RIGHT);
@@ -37,7 +36,7 @@ public class ScanTopEdges extends Scanner {
 			}
 		}
 
-		run(cntxt);
+		run();
 	}
 
 	public static void setFlags() {

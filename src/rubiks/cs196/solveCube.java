@@ -1,51 +1,66 @@
 package rubiks.cs196;
 
-import android.content.Context;
+import android.os.Looper;
 
 public class solveCube {
-	
-	public static void run(Context cntxt) {
-		//gets context of app that is using this class for Message
-		
-		
-		new Message("Solving this cube:",cntxt);
 
-		//COMMENT NEXT TWO LINES OUT IN ACTUAL CODE
-		String stringCube = "YWYOGOGGBOGRGRBYRWBWWRBGRBGBBOWOWOOYOBWOWRGRBRYRYYYWYG";
+	/**
+	 * call scanners and prints here
+	 * **/
+	public static void main(String[] args) {
+
+		Looper.prepare();
+
+		new Message("The first step was too build a yellow cross. But "
+				+ "ran out of time to implement it :)\n");
+		
+		new Message("Solving this cube:\n");
+
+		String stringCube = "BWWBGRBOGRBGBRORGORROGBGWBYYGOROWRROGWWWWOYOBWYYYYYBYG";
 		Cube.setTo(stringCube.toCharArray());
-		new Message(Cube.toString(true),cntxt);
+		new Message(Cube.toString(true));
 
-		new Message("STEP 2: SCANNING FOR CROSS PIECES",cntxt);
-		ScanCrossPieces.run(cntxt);
-		new Message("STEP 2: done",cntxt);
+		ErrorCheck.errorCheck();
 
-		new Message("STEP 3: SCANNING FOR BOTTOM CORNERS",cntxt);
-		ScanBottomCorners.run(cntxt);
-		new Message("STEP 3: done",cntxt);
+		new Message("STEP 2: Swap the incorrect cross pieces\n");
+		new Message("Rotate the yellow cross until some of the colours "
+				+ "around the sides begin to match. If you get it so "
+				+ "that one colour matches, keep rotating futher. It "
+				+ "is always possible to get at least 2 colours to match. "
+				+ "If you're very lucky, it is possible "
+				+ "that all 4 colours match.\n");
+		ScanCrossPieces.run();
+		new Message("STEP 2: DONE");
 
-		new Message("STEP 4: SCANNING FOR SECOND LAYER",cntxt);
-		ScanSecondLayer.run(cntxt);
-		new Message("STEP 4: done",cntxt);
+		new Message("STEP 3: Insert the 4 bottom corners");
+		new Message("Next, you will insert the 4 yellow corner pieces into the bottom layer.");
+		ScanBottomCorners.run();
+		new Message("STEP 3: DONE");
 
-		new Message("STEP 5: SCANNING FOR TOP CROSSPIECES",cntxt);
-		ScanTopCross.run(cntxt);
-		new Message("STEP 5: DONE",cntxt);
+		new Message("STEP 4: Insert the 4 middle edges");
+		ScanSecondLayer.run();
+		new Message("STEP 4: DONE");
 
-		new Message("STEP 6: SCANNING FOR TOP CORNERS",cntxt);
-		ScanTopCornersUp.run(cntxt);
-		new Message("STEP 6: DONE",cntxt);
+		new Message("STEP 5: Make the edges face up");
+		ScanTopCross.run();
+		new Message("STEP 5: DONE");
 
-		new Message("STEP 7: SCANNING SIDES OF TOP CORNERS",cntxt);
-		ScanTopCornerSides.run(cntxt);
-		new Message("STEP 7: DONE",cntxt);
+		new Message("STEP 6: Make the corners face up");
+		ScanTopCornersUp.run();
+		new Message("STEP 6: DONE");
 
-		new Message("STEP 8: SCANNING FOR TOP EDGES",cntxt);
-		ScanTopEdges.run(cntxt);
-		new Message("STEP 8: DONE",cntxt);
+		new Message("STEP 7: Correctly position the corners");
+		ScanTopCornerSides.run();
+		new Message("STEP 7: DONE");
 
-		new Message(Cube.toString(true),cntxt);
+		new Message("STEP 8: Correctly position the edges");
+		ScanTopEdges.run();
+		new Message("STEP 8: DONE");
+
+		TextIO.putln(Cube.toString(true));
 		if (Cube.equals(Cube.completeCube))
-			new Message("CUBE SOLVED!",cntxt);
+			new Message("CUBE SOLVED IN " + Permutation.moves + " MOVES!");
+		else
+			new Message("Failed");
 	}
-
 }
