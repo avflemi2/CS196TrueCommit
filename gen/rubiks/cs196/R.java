@@ -75,6 +75,8 @@ public final class R {
         public static final int hello_world=0x7f050002;
         public static final int next=0x7f050004;
         public static final int nextbutton=0x7f050009;
+        public static final int solve_my_cube=0x7f050010;
+        public static final int solve_test_cube=0x7f05000f;
         public static final int step1=0x7f05000a;
         public static final int steps=0x7f050008;
         public static final int title_activity_rubik_cube_animation_example=0x7f05000e;

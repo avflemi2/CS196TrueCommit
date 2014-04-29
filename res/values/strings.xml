@@ -18,4 +18,8 @@
     
     <string name="title_activity_rubik_cube_animation_example">RubikCubeAnimationExampleActivity</string>
     
+    <string name="solve_test_cube">Solve A Test Cube</string>
+    
+    <string name="solve_my_cube">Solve My Cube</string>
+    
 </resources>

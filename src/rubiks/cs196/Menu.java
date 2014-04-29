@@ -13,9 +13,6 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 public class Menu extends Activity {
-//	
-//	TextView welcome = (TextView) findViewById(R.id.textView1);
-//	welcome.setTextColor(Color.WHITE);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,31 +23,37 @@ public class Menu extends Activity {
 		rel.setBackgroundColor(Color.BLACK);
 
 		Button button1 = (Button) findViewById(R.id.button1);
-
 		button1.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-
+				Tutorial.useTestCube = false;
 				Intent intent = new Intent(getApplicationContext(), Home.class);
 				startActivity(intent);
 
 			}
 		});
-		Button button2 = (Button) findViewById(R.id.button2);
-
-		button2.setOnClickListener(new OnClickListener() {
-
+		
+		Button button3 = (Button) findViewById(R.id.button3);
+		button3.setOnClickListener(new OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-
-				Intent intent = new Intent(getApplicationContext(), RubikCubeAnimationExampleActivity.class);
+				Tutorial.useTestCube = true;
+				Intent intent = new Intent(getApplicationContext(), Tutorial.class);
 				startActivity(intent);
-
+				
 			}
 		});
+		
+		Button button2 = (Button) findViewById(R.id.button2);
+		button2.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getApplicationContext(), RubikCubeAnimationExampleActivity.class);
+				startActivity(intent);
+			}
+		});
+		
 	}
 
 }

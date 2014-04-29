@@ -7,22 +7,25 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Looper;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class Tutorial extends Activity {
 	public static String msg = "";
 	public static boolean paused = true;
-
+	public static boolean useTestCube = false;
+	
 	protected void onCreate(Bundle savedInstanceState) {
 
 		/** SOLVECUBE in another thread **/
 		new Thread(new Runnable() {
 			public void run() {
-				solveCube.main(null);
+				solveCube.main(useTestCube);
 			}
 		}).start();
 
@@ -31,7 +34,22 @@ public class Tutorial extends Activity {
 
 		RelativeLayout rel = (RelativeLayout) findViewById(R.id.rel1);
 		rel.setBackgroundColor(Color.BLACK);
+		
+		final TextView instructionBox = (TextView) findViewById(R.id.textView1);
+		instructionBox.setMovementMethod(new ScrollingMovementMethod());
+		
+		final Button button1 = (Button) findViewById(R.id.button2);
+		button1.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				paused = false;
+				instructionBox.setText(msg);
+				button1.setText("Next");
+				//dialog.show();
+			}
+		});
 
+		/**
 		AlertDialog.Builder builder3 = new AlertDialog.Builder(this);
 		builder3.setTitle("Step x");
 		builder3.setMessage(msg);
@@ -89,14 +107,7 @@ public class Tutorial extends Activity {
 				});
 
 		final AlertDialog dialog = builder.create();
-		Button button1 = (Button) findViewById(R.id.button2);
-		button1.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				dialog.show();
-			}
-		});
+		*/
 
 	}
 
