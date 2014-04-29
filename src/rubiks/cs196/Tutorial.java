@@ -68,27 +68,30 @@ public class Tutorial extends Activity {
 		final AlertDialog dialog4 = builder4.create();
 
 		AlertDialog.Builder builder3 = new AlertDialog.Builder(this);
-		builder3.setTitle("Step 3");
+		builder3.setTitle("Step x");
 		builder3.setMessage(msg);
-		builder3.setPositiveButton(R.string.contin,
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						paused = false;
-						dialog4.show();
-					}
-				});
-		builder3.setNegativeButton(R.string.cancel,
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-					}
-				});
-
 		final AlertDialog dialog3 = builder3.create();
 
 		AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
-		builder2.setTitle("Step 2");
+		builder2.setTitle("Step x");
 		builder2.setMessage(msg);
-		builder2.setPositiveButton(R.string.contin,
+		final AlertDialog dialog2 = builder2.create();
+
+		dialog3.setButton(DialogInterface.BUTTON_POSITIVE, "continue",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						paused = false;
+						dialog2.setMessage(msg);
+						dialog2.show();
+					}
+				});
+		dialog3.setButton(DialogInterface.BUTTON_NEGATIVE, "___",
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+					}
+				});
+
+		dialog2.setButton(DialogInterface.BUTTON_POSITIVE, "continue",
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
 						paused = false;
@@ -96,18 +99,15 @@ public class Tutorial extends Activity {
 						dialog3.show();
 					}
 				});
-		builder2.setNegativeButton(R.string.cancel,
+		dialog2.setButton(DialogInterface.BUTTON_NEGATIVE, "___",
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
 					}
 				});
 
-		final AlertDialog dialog2 = builder2.create();
-
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("Step 1");
 		builder.setMessage(msg);
-		// builder.setMessage("Rotate face x in x direction");
 		// Add the buttons
 		builder.setPositiveButton(R.string.contin,
 				new DialogInterface.OnClickListener() {
