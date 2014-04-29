@@ -2,11 +2,21 @@ package rubikcubeanimationexample;
 
 import java.util.Random;
 
+import rubiks.cs196.R;
+import rubiks.cs196.solveCube;
 import android.app.Activity;
+import android.graphics.Color;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.Window;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class RubikCubeAnimationExampleActivity extends Activity implements
 		KubeRenderer.AnimationCallback {
@@ -195,17 +205,46 @@ public class RubikCubeAnimationExampleActivity extends Activity implements
 				shapes[k++] = mCubes[mPermutation[i + j]];
 	}
 
+	
+	public static String msg = "";
+	public static boolean paused = true;
+	public static boolean useTestCube = false;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+	
+		/** SOLVECUBE in another thread **/
+		new Thread(new Runnable() {
+			public void run() {
+				solveCube.main(useTestCube);
+			}
+		}).start();
+		
 		// We don't need a title either.
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-		mView = new GLSurfaceView(getApplication());
+		/** Set up views and renderer **/
+		setContentView(R.layout.overlay_test);
+		mView = (GLSurfaceView)findViewById(R.id.surface);
+		//mView = new GLSurfaceView(getApplication());
 		mRenderer = new KubeRenderer(makeGLWorld(), this);
 		mView.setRenderer(mRenderer);
-		setContentView(mView);
+		
+		/** Set up buttons and instruction box **/
+		FrameLayout frm = (FrameLayout) findViewById(R.id.frameLayout2);
+		frm.setBackgroundColor(Color.BLACK);
+		final TextView instructionBox = (TextView) findViewById(R.id.textView1);
+		instructionBox.setMovementMethod(new ScrollingMovementMethod());
+		final Button button1 = (Button) findViewById(R.id.button2);
+		button1.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				paused = false;
+				instructionBox.setText(msg);
+				button1.setText("Next");
+			}
+		});
 		
 	}
 

@@ -1,5 +1,7 @@
 package rubiks.cs196;
 
+import rubikcubeanimationexample.RubikCubeAnimationExampleActivity;
+
 import com.threed.jpct.Logger;
 
 public class Message extends Tutorial {
@@ -17,7 +19,7 @@ public class Message extends Tutorial {
 
 	public String print() {
 		Logger.log(message);
-		Tutorial.msg = message;
+		RubikCubeAnimationExampleActivity.msg = message;
 		pause();
 		return message;
 	}
@@ -27,9 +29,9 @@ public class Message extends Tutorial {
 	}
 
 	public void pause() {
-		Tutorial.paused = true;
+		RubikCubeAnimationExampleActivity.paused = true;
 		Logger.log("paused");
-		while (Tutorial.paused) {
+		while (RubikCubeAnimationExampleActivity.paused) {
 		}
 	}
 

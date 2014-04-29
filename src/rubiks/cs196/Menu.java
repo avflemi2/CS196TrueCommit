@@ -26,7 +26,7 @@ public class Menu extends Activity {
 		button1.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Tutorial.useTestCube = false;
+				RubikCubeAnimationExampleActivity.useTestCube = false;
 				Intent intent = new Intent(getApplicationContext(), Home.class);
 				startActivity(intent);
 
@@ -38,8 +38,8 @@ public class Menu extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Tutorial.useTestCube = true;
-				Intent intent = new Intent(getApplicationContext(), Tutorial.class);
+				RubikCubeAnimationExampleActivity.useTestCube = true;
+				Intent intent = new Intent(getApplicationContext(), RubikCubeAnimationExampleActivity.class);
 				startActivity(intent);
 				
 			}

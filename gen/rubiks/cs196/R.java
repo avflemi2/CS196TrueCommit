@@ -25,7 +25,7 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int action_settings=0x7f080015;
+        public static final int action_settings=0x7f080018;
         public static final int button1=0x7f080003;
         public static final int button2=0x7f080004;
         public static final int button3=0x7f080005;
@@ -41,11 +41,14 @@ public final class R {
         public static final int buttonred=0x7f08000d;
         public static final int buttonwhite=0x7f080011;
         public static final int buttonyellow=0x7f080013;
+        public static final int frameLayout1=0x7f080015;
+        public static final int frameLayout2=0x7f080017;
         public static final int gridLayout1=0x7f080002;
         public static final int gridLayout2=0x7f08000c;
         public static final int gridLayout3=0x7f080010;
         public static final int next=0x7f080014;
         public static final int rel1=0x7f080000;
+        public static final int surface=0x7f080016;
         public static final int textView1=0x7f080001;
     }
     public static final class layout {
@@ -57,8 +60,9 @@ public final class R {
         public static final int face6=0x7f030005;
         public static final int menu=0x7f030006;
         public static final int model=0x7f030007;
-        public static final int solve_complete=0x7f030008;
-        public static final int tutorial=0x7f030009;
+        public static final int overlay_test=0x7f030008;
+        public static final int solve_complete=0x7f030009;
+        public static final int tutorial=0x7f03000a;
     }
     public static final class menu {
         public static final int home=0x7f070000;

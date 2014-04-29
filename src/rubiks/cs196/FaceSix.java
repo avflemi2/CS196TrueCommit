@@ -1,5 +1,6 @@
 package rubiks.cs196;
 
+import rubikcubeanimationexample.RubikCubeAnimationExampleActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -29,7 +30,7 @@ public class FaceSix extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getApplicationContext(), Tutorial.class);
+				Intent intent = new Intent(getApplicationContext(), RubikCubeAnimationExampleActivity.class);
 				startActivity(intent);
 			}
 		});
