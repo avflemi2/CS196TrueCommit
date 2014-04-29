@@ -10,7 +10,7 @@ public class ScanBottomCorners extends Scanner {
 	public static void run() {
 		setFlags();
 		if (correctCorners()) {
-			new Message("All corners aligned!");
+			new Message(true,"All corners aligned!");
 			return;
 		}
 		checkBottomCorners();
@@ -18,7 +18,7 @@ public class ScanBottomCorners extends Scanner {
 		while (!correctCorners()) {
 			placeCorner();
 		}
-		new Message("All corners aligned!");
+		new Message(true,"All corners aligned!");
 	}
 
 	public static void setFlags() {
@@ -196,7 +196,7 @@ public class ScanBottomCorners extends Scanner {
 			else {
 				Cube.setOrientation(face);
 				while (!checkColumn(face)) {
-					new Message("There is a yellow corner on the top face. Rotate the top face around until the corner is directly above the position where it must be inserted.");
+					new Message(true,"There is a yellow corner on the top face. Rotate the top face around until the corner is directly above the position where it must be inserted.");
 					Algorithms.insertBottomCorners(2);
 				}
 				if (!yellowCorners[face]) {

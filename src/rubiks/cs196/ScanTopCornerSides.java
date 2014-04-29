@@ -6,13 +6,13 @@ public class ScanTopCornerSides extends Scanner{
 		Cube.setOrientation(0);
 		setFlags();
 		if (correctFlags() == 4) {
-			new Message("All corners aligned!");
+			new Message(true,"All corners aligned!");
 			return;
 		}
 		while (correctFlags() != 4) {
 			placeTopCorners();
 		}
-		new Message("All corners aligned!");
+		new Message(true,"All corners aligned!");
 	}
 	
 	public static void setFlags(){

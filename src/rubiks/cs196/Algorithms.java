@@ -12,8 +12,8 @@ public class Algorithms extends Permutation {
 			throw new RuntimeException("Invalid case number " + caseNum);
 		switch (caseNum) {
 		case 1: // adjacent faced pairs
-			new Message("First, we move one of the bad pieces to the top layer. This is so that we can move the top layer independently from the bottom layer. Then, we rotate the bad piece on the top layer until it becomes positioned directly above where we want it to go. Then we rotate it to the bottom layer which solves it. This very same move also moves the other bad piece to the top layer, and we solve it using the same strategy in reverse.");
-			new Message("Use Case 1");
+			new Message(true,"First, we move one of the bad pieces to the top layer. This is so that we can move the top layer independently from the bottom layer. Then, we rotate the bad piece on the top layer until it becomes positioned directly above where we want it to go. Then we rotate it to the bottom layer which solves it. This very same move also moves the other bad piece to the top layer, and we solve it using the same strategy in reverse.");
+			new Message(true,"Use Case 1");
 			rotate180(RIGHT);
 			rotateCW(UP);
 			rotate180(FRONT);
@@ -21,8 +21,8 @@ public class Algorithms extends Permutation {
 			rotate180(RIGHT);
 			break;
 		case 2: // opposite faced pairs
-			new Message("First, we move one of the bad pieces to the top layer. This is so that we can move the top layer independently from the bottom layer. Then, we rotate the bad piece on the top layer until it becomes positioned directly above where we want it to go. Then we rotate it to the bottom layer which solves it. This very same move also moves the other bad piece to the top layer, and we solve it using the same strategy in reverse.");
-			new Message("Use Case 2");
+			new Message(true,"First, we move one of the bad pieces to the top layer. This is so that we can move the top layer independently from the bottom layer. Then, we rotate the bad piece on the top layer until it becomes positioned directly above where we want it to go. Then we rotate it to the bottom layer which solves it. This very same move also moves the other bad piece to the top layer, and we solve it using the same strategy in reverse.");
+			new Message(true,"Use Case 2");
 			rotate180(RIGHT);
 			rotate180(UP);
 			rotate180(LEFT);
@@ -41,7 +41,7 @@ public class Algorithms extends Permutation {
 		}
 		switch (caseNum) {
 		case 1: // yellow piece is in bottom layer, bring it up top
-			new Message("A corner has already been inserted into the bottom layer the wrong way. Raise it to the top.");
+			new Message(true,"A corner has already been inserted into the bottom layer the wrong way. Raise it to the top.");
 			rotateCW(RIGHT);
 			rotateCCW(UP);
 			rotateCCW(RIGHT);
@@ -50,19 +50,19 @@ public class Algorithms extends Permutation {
 			rotateCCW(UP);
 			break;
 		case 3:
-			new Message("Just twist the corner and it will match one of the other cases.");
+			new Message(true,"Just twist the corner and it will match one of the other cases.");
 			rotateCW(RIGHT);
 			rotateCW(UP);
 			rotateCCW(RIGHT);
 			break;
 		case 4:
-			new Message("Corner is ready to be inserted. Apply case 1.");
+			new Message(true,"Corner is ready to be inserted. Apply case 1.");
 			rotateCCW(FRONT);
 			rotateCCW(UP);
 			rotateCW(FRONT);
 			break;
 		case 5:
-			new Message("Corner is ready to be inserted. Apply case 2.");
+			new Message(true,"Corner is ready to be inserted. Apply case 2.");
 			rotateCW(RIGHT);
 			rotateCCW(UP);
 			rotateCCW(RIGHT);
@@ -76,7 +76,7 @@ public class Algorithms extends Permutation {
 			throw new RuntimeException("Invalid case number " + caseNum);
 		switch (caseNum) {
 		case 1: // ryanheise case 1
-			new Message("Case 1");
+			new Message(true,"Case 1");
 			rotateCW(UP);
 			rotateCW(RIGHT);
 			rotateCCW(UP);
@@ -87,7 +87,7 @@ public class Algorithms extends Permutation {
 			rotateCW(FRONT);
 			break;
 		case 2: // mirror case of 1
-			new Message("Case 2 (mirror of case 1)");
+			new Message(true,"Case 2 (mirror of case 1)");
 			rotateCCW(UP);
 			rotateCCW(LEFT);
 			rotateCW(UP);
@@ -99,7 +99,7 @@ public class Algorithms extends Permutation {
 			break;
 		case 3: // "force out" the piece
 			// this is equal to case 1 OR 2, doesn't need to be called
-			new Message("Case 3 (force out)");
+			new Message(true,"Case 3 (force out)");
 			rotateCCW(UP);
 			rotateCCW(FRONT);
 			rotateCW(UP);

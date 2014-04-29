@@ -22,7 +22,7 @@ public class ScanSecondLayer extends Scanner {
 
 		// base case
 		if (sameFacesSecondLayer()) {
-			new Message("All faces aligned!");
+			new Message(true,"All faces aligned!");
 			return;
 		}
 
@@ -31,7 +31,7 @@ public class ScanSecondLayer extends Scanner {
 		while (i != -1) {
 			i = forceOut();
 			if (i != -1) {
-				new Message("There is a piece you must force out.");
+				new Message(true,"There is a piece you must force out.");
 				Cube.setOrientation(i);
 				Algorithms.secondLayer(3);
 			}

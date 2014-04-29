@@ -18,6 +18,8 @@ public class Tutorial extends Activity {
 	public static boolean paused = true;
 
 	protected void onCreate(Bundle savedInstanceState) {
+
+		/** SOLVECUBE in another thread **/
 		new Thread(new Runnable() {
 			public void run() {
 				solveCube.main(null);
@@ -29,43 +31,6 @@ public class Tutorial extends Activity {
 
 		RelativeLayout rel = (RelativeLayout) findViewById(R.id.rel1);
 		rel.setBackgroundColor(Color.BLACK);
-
-		AlertDialog.Builder builder5 = new AlertDialog.Builder(this);
-		builder5.setTitle("Step 5");
-		builder5.setMessage("Rotate face x5 in x5 direction");
-		builder5.setPositiveButton(R.string.contin,
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						Intent intent = new Intent(getApplicationContext(),
-								SolveComplete.class);
-						startActivity(intent);
-					}
-				});
-		builder5.setNegativeButton(R.string.cancel,
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-					}
-				});
-
-		final AlertDialog dialog5 = builder5.create();
-
-		AlertDialog.Builder builder4 = new AlertDialog.Builder(this);
-		builder4.setTitle("Step 4");
-		builder4.setMessage("Rotate face x4 in x4 direction");
-		builder4.setPositiveButton(R.string.contin,
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						paused = false;
-						dialog5.show();
-					}
-				});
-		builder4.setNegativeButton(R.string.cancel,
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-					}
-				});
-
-		final AlertDialog dialog4 = builder4.create();
 
 		AlertDialog.Builder builder3 = new AlertDialog.Builder(this);
 		builder3.setTitle("Step x");
@@ -88,9 +53,9 @@ public class Tutorial extends Activity {
 		dialog3.setButton(DialogInterface.BUTTON_NEGATIVE, "___",
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
+						// cancel
 					}
 				});
-
 		dialog2.setButton(DialogInterface.BUTTON_POSITIVE, "continue",
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
@@ -102,13 +67,13 @@ public class Tutorial extends Activity {
 		dialog2.setButton(DialogInterface.BUTTON_NEGATIVE, "___",
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
+						// cancel
 					}
 				});
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Step 1");
-		builder.setMessage(msg);
-		// Add the buttons
+		builder.setTitle("Solve");
+		builder.setMessage("Follow the instructions on your cube");
 		builder.setPositiveButton(R.string.contin,
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
@@ -125,17 +90,14 @@ public class Tutorial extends Activity {
 
 		final AlertDialog dialog = builder.create();
 		Button button1 = (Button) findViewById(R.id.button2);
-
 		button1.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				paused = false;
-				dialog.setMessage(msg);
 				dialog.show();
 			}
 		});
+
 	}
 
 }

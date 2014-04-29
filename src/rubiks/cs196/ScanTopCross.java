@@ -6,13 +6,13 @@ public class ScanTopCross extends Scanner {
 		Cube.setOrientation(0);
 		setFlags();
 		if (correctFlags() == 4) {
-			new Message("All edges aligned!");
+			new Message(true,"All edges aligned!");
 			return;
 		}
 		while (correctFlags() != 4) {
 			placeWhiteCrossPieces();
 		}
-		new Message("All edges aligned!");
+		new Message(true,"All edges aligned!");
 	}
 
 	public static void setFlags() {
@@ -47,16 +47,16 @@ public class ScanTopCross extends Scanner {
 		setFlags();
 		int count = correctFlags();
 		if (count == 0) {
-			new Message("Case 1");
+			new Message(true,"Case 1");
 			return true;
 		}
 		if (count == 2) {
-			new Message("Case 2");
+			new Message(true,"Case 2");
 			if (whiteCross[3] && (whiteCross[2] || whiteCross[1]))
 				return true;
 		}
 		if (count == 4) {
-			new Message("Case 3");
+			new Message(true,"Case 3");
 			return true;
 		}
 		return false;

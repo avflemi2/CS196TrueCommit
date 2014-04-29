@@ -11,7 +11,7 @@ public class ScanTopEdges extends Scanner {
 
 		// base case
 		if (countFlags() == 4){ // FINISHED
-			new Message("All Top Edges Aligned!");
+			new Message(true,"All Top Edges Aligned!");
 			return;
 		}
 		

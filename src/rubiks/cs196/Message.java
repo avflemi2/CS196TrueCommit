@@ -2,15 +2,17 @@ package rubiks.cs196;
 
 import com.threed.jpct.Logger;
 
-public class Message extends Tutorial{
+public class Message extends Tutorial {
 	private String message;
 	private final int maxLineLength = 80;
 
-	public Message(String msg) {
+	public Message(boolean print, String msg) {
 		message = msg;
-		message = "> " + message;
-		wordWrap();
-		print();
+		/** _use only for textIO_ */
+		// message = "> " + message;
+		// wordWrap();
+		if (print)
+			print();
 	}
 
 	public String print() {
@@ -19,19 +21,24 @@ public class Message extends Tutorial{
 		pause();
 		return message;
 	}
+	
+	public void append(String str){
+		message+="\n"+str;
+	}
 
-	public void pause(){
+	public void pause() {
 		Tutorial.paused = true;
 		Logger.log("paused");
-		while (Tutorial.paused){
+		while (Tutorial.paused) {
 		}
 	}
-	
+
 	public void wordWrap() {
 		int i = 0;
-		while (i + maxLineLength < message.length() && (i = message.lastIndexOf(" ", i + maxLineLength)) != -1){
+		while (i + maxLineLength < message.length()
+				&& (i = message.lastIndexOf(" ", i + maxLineLength)) != -1) {
 			String prt1 = message.substring(0, i);
-			String prt2 = message.substring(i+1, message.length());
+			String prt2 = message.substring(i + 1, message.length());
 			message = prt1 + '\n' + prt2;
 		}
 	}

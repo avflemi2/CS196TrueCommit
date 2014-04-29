@@ -10,27 +10,27 @@ public class ScanCrossPieces extends Scanner {
 	public static void run() {
 		setFlags();
 		if (sameFaces() == 4) {
-			new Message("All 4 colors match!");
+			new Message(true,"All 4 colors match!");
 			return;
 		}
-		new Message("Rotate the yellow cross until you get two colors to match.");
+		new Message(true,"Rotate the yellow cross until you get two colors to match.");
 		alignBottom();
 		if (sameFaces() == 4) {
-			new Message("All 4 colors match!");
+			new Message(true,"All 4 colors match!");
 			return;
 		}
-		new Message("You have two bad cross pieces. "
+		new Message(true,"You have two bad cross pieces. "
 				+ "You will need to swap them. There are "
 				+ "two different possibilities. Either the "
 				+ "two bad pieces are next to each other, "
 				+ "or they are on opposite sides of the cube.");
 		if (isAdjacent()) {
-			new Message("Your two bad pieces are next to "
+			new Message(true,"Your two bad pieces are next to "
 					+ "eachother.");
 			Cube.setOrientation(orientAdjacent());
 			Algorithms.swapCrossPieces(1);
 		} else {
-			new Message("Your two bad pieces are next to "
+			new Message(true,"Your two bad pieces are next to "
 					+ "on opposite sides of one another.");
 			Cube.setOrientation(orientOpposite());
 			Algorithms.swapCrossPieces(2);
@@ -59,7 +59,7 @@ public class ScanCrossPieces extends Scanner {
 		while (sameFaces() < 2) {
 			Algorithms.swapCrossPieces(3);
 		}
-		new Message("Two colors match!");
+		new Message(true,"Two colors match!");
 	}
 
 	// returns face that will set orientation

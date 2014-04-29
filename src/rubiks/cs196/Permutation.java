@@ -58,7 +58,7 @@ public class Permutation extends Cube {
 				failMsg += "face " + i + ", " + fail + "\n";
 		}
 		if (failMsg.length() > 0)
-			TextIO.putln("perm duplicates at: " + failMsg);
+			new Message(true,"perm duplicates at: " + failMsg);
 	}
 
 	// rotates @face counter-clockwise once
@@ -72,14 +72,14 @@ public class Permutation extends Cube {
 	}
 
 	protected static void rotateCCW(int face) {
-		new Message("CCW\t" + Cube.faceToString(face));
+		new Message(true,"CCW\t" + Cube.faceToString(face));
 		moves++;
 		rotateCCW2(face);
 	}
 
 	// rotates @face clockwise once
 	protected static void rotateCW(int face) {
-		new Message("CW\t" + Cube.faceToString(face));
+		new Message(true,"CW\t" + Cube.faceToString(face));
 		moves++;
 		rotateCCW2(face);
 		rotateCCW2(face);
@@ -88,7 +88,7 @@ public class Permutation extends Cube {
 
 	// rotates @face clockwise twice
 	protected static void rotate180(int face) {
-		new Message("180\t" + Cube.faceToString(face));
+		new Message(true,"180\t" + Cube.faceToString(face));
 		moves++;
 		rotateCCW2(face);
 		rotateCCW2(face);
