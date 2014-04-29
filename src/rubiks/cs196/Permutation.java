@@ -71,27 +71,30 @@ public class Permutation extends Cube {
 		cube = newCube;
 	}
 
-	protected static void rotateCCW(int face) {
-		new Message(true,"CCW\t" + Cube.faceToString(face));
+	protected static String rotateCCW(int face) {
+		Message msg = new Message(false,"CCW\t" + Cube.faceToString(face));
 		moves++;
 		rotateCCW2(face);
+		return msg.toString();
 	}
 
 	// rotates @face clockwise once
-	protected static void rotateCW(int face) {
-		new Message(true,"CW\t" + Cube.faceToString(face));
+	protected static String rotateCW(int face) {
+		Message msg = new Message(false,"CW\t" + Cube.faceToString(face));
 		moves++;
 		rotateCCW2(face);
 		rotateCCW2(face);
 		rotateCCW2(face);
+		return msg.toString();
 	}
 
 	// rotates @face clockwise twice
-	protected static void rotate180(int face) {
-		new Message(true,"180\t" + Cube.faceToString(face));
+	protected static String rotate180(int face) {
+		Message msg = new Message(false,"180\t" + Cube.faceToString(face));
 		moves++;
 		rotateCCW2(face);
 		rotateCCW2(face);
+		return msg.toString();
 	}
 
 	// finds duplicate permutation values

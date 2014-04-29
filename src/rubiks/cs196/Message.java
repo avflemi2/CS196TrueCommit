@@ -46,4 +46,8 @@ public class Message extends Tutorial {
 	public String getMessage() {
 		return message;
 	}
+	
+	public String toString(){
+		return getMessage();
+	}
 }

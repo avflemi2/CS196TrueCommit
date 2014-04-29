@@ -103,6 +103,7 @@ public class Cube {
 
 	// changes orientation and relative values (Front, back, etc)
 	public static void setOrientation(int orient) {
+		String msg = "Orient the ";
 		if (orient < GREEN || orient > YELLOW)
 			throw new RuntimeException("Impossible orientation");
 		orientation = orient;
@@ -114,6 +115,7 @@ public class Cube {
 			LEFT = ORANGE;
 			UP = WHITE;
 			DOWN = YELLOW;
+			msg += "green";
 			break;
 		case BLUE:
 			FRONT = BLUE;
@@ -122,6 +124,7 @@ public class Cube {
 			LEFT = RED;
 			UP = WHITE;
 			DOWN = YELLOW;
+			msg += "blue";
 			break;
 		case RED:
 			FRONT = RED;
@@ -130,6 +133,7 @@ public class Cube {
 			LEFT = GREEN;
 			UP = WHITE;
 			DOWN = YELLOW;
+			msg+="red";
 			break;
 		case ORANGE:
 			FRONT = ORANGE;
@@ -138,6 +142,7 @@ public class Cube {
 			LEFT = BLUE;
 			UP = WHITE;
 			DOWN = YELLOW;
+			msg+="orange";
 			break;
 		case WHITE:
 			FRONT = WHITE;
@@ -146,6 +151,7 @@ public class Cube {
 			LEFT = ORANGE;
 			UP = BLUE;
 			DOWN = GREEN;
+			msg+="white";
 			break;
 		case YELLOW:
 			FRONT = YELLOW;
@@ -154,7 +160,10 @@ public class Cube {
 			LEFT = ORANGE;
 			UP = GREEN;
 			DOWN = BLUE;
+			msg+="yellow";
 			break;
 		}
+		msg+= " side toward you.";
+		new Message(true,msg);
 	}
 }

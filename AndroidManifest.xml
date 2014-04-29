@@ -62,6 +62,10 @@
             android:name="rubiks.cs196.Tutorial"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="rubikcubeanimationexample.RubikCubeAnimationExampleActivity"
+            android:label="@string/title_activity_rubik_cube_animation_example" >
+        </activity>
     </application>
 
 </manifest>

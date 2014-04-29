@@ -16,4 +16,6 @@
     <string name="contin">Continue</string>
     <string name="congrats">Congratulations! You have solved your cube!</string>
     
+    <string name="title_activity_rubik_cube_animation_example">RubikCubeAnimationExampleActivity</string>
+    
 </resources>

@@ -85,7 +85,7 @@ public class ScanBottomCorners extends Scanner {
 					rotate = true;
 					while (Cube.getColor(2) == 'Y' || Cube.getColor(9) == 'Y'
 							|| Cube.getColor(44) == 'Y')
-						Algorithms.rotateCW(2);
+						Algorithms.rotateCW(Cube.UP);
 
 				} else if (index[i] == 26 || index[i] == 33) {
 					Cube.setOrientation(2);

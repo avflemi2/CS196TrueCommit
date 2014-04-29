@@ -77,6 +77,7 @@ public final class R {
         public static final int nextbutton=0x7f050009;
         public static final int step1=0x7f05000a;
         public static final int steps=0x7f050008;
+        public static final int title_activity_rubik_cube_animation_example=0x7f05000e;
         public static final int welcome=0x7f050005;
     }
     public static final class style {

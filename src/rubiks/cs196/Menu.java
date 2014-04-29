@@ -2,6 +2,7 @@ package rubiks.cs196;
 
 //import com.threed.jpct.example.HelloWorld;
 
+import rubikcubeanimationexample.RubikCubeAnimationExampleActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -45,7 +46,7 @@ public class Menu extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
-				Intent intent = new Intent(getApplicationContext(), HelloWorld.class);
+				Intent intent = new Intent(getApplicationContext(), RubikCubeAnimationExampleActivity.class);
 				startActivity(intent);
 
 			}

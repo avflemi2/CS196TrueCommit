@@ -47,16 +47,16 @@ public class ScanTopCross extends Scanner {
 		setFlags();
 		int count = correctFlags();
 		if (count == 0) {
-			new Message(true,"Case 1");
+			new Message(true,"Applying to case 1");
 			return true;
 		}
 		if (count == 2) {
-			new Message(true,"Case 2");
+			new Message(true,"Applying to case 2");
 			if (whiteCross[3] && (whiteCross[2] || whiteCross[1]))
 				return true;
 		}
 		if (count == 4) {
-			new Message(true,"Case 3");
+			new Message(true,"Applying to case 3");
 			return true;
 		}
 		return false;
