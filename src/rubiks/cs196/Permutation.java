@@ -1,4 +1,7 @@
 package rubiks.cs196;
+
+import rubikcubeanimationexample.RubikCubeAnimationExampleActivity;
+
 /**
  * Permutation class
  * contains methods to alter cube and also contains the cube array
@@ -58,7 +61,7 @@ public class Permutation extends Cube {
 				failMsg += "face " + i + ", " + fail + "\n";
 		}
 		if (failMsg.length() > 0)
-			new Message(true,"perm duplicates at: " + failMsg);
+			new Message(true, "perm duplicates at: " + failMsg);
 	}
 
 	// rotates @face counter-clockwise once
@@ -72,7 +75,10 @@ public class Permutation extends Cube {
 	}
 
 	protected static String rotateCCW(int face) {
-		Message msg = new Message(false,"CCW\t" + Cube.faceToString(face));
+		Message msg = new Message(false, "CCW\t" + Cube.faceToString(face));
+		do {
+			RubikCubeAnimationExampleActivity.rotateFace(face, true);
+		} while (RubikCubeAnimationExampleActivity.rotate);
 		moves++;
 		rotateCCW2(face);
 		return msg.toString();
@@ -80,7 +86,10 @@ public class Permutation extends Cube {
 
 	// rotates @face clockwise once
 	protected static String rotateCW(int face) {
-		Message msg = new Message(false,"CW\t" + Cube.faceToString(face));
+		Message msg = new Message(false, "CW\t" + Cube.faceToString(face));
+		do {
+			RubikCubeAnimationExampleActivity.rotateFace(face, true);
+		} while (RubikCubeAnimationExampleActivity.rotate);
 		moves++;
 		rotateCCW2(face);
 		rotateCCW2(face);
@@ -90,7 +99,10 @@ public class Permutation extends Cube {
 
 	// rotates @face clockwise twice
 	protected static String rotate180(int face) {
-		Message msg = new Message(false,"180\t" + Cube.faceToString(face));
+		Message msg = new Message(false, "180\t" + Cube.faceToString(face));
+		do {
+			RubikCubeAnimationExampleActivity.rotateFace(face, true);
+		} while (RubikCubeAnimationExampleActivity.rotate);
 		moves++;
 		rotateCCW2(face);
 		rotateCCW2(face);

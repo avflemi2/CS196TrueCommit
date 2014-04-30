@@ -205,32 +205,31 @@ public class RubikCubeAnimationExampleActivity extends Activity implements
 				shapes[k++] = mCubes[mPermutation[i + j]];
 	}
 
-	
 	public static String msg = "";
 	public static boolean paused = true;
 	public static boolean useTestCube = false;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	
+
 		/** SOLVECUBE in another thread **/
 		new Thread(new Runnable() {
 			public void run() {
 				solveCube.main(useTestCube);
 			}
 		}).start();
-		
+
 		// We don't need a title either.
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		/** Set up views and renderer **/
 		setContentView(R.layout.overlay_test);
-		mView = (GLSurfaceView)findViewById(R.id.surface);
-		//mView = new GLSurfaceView(getApplication());
+		mView = (GLSurfaceView) findViewById(R.id.surface);
+		// mView = new GLSurfaceView(getApplication());
 		mRenderer = new KubeRenderer(makeGLWorld(), this);
 		mView.setRenderer(mRenderer);
-		
+
 		/** Set up buttons and instruction box **/
 		FrameLayout frm = (FrameLayout) findViewById(R.id.frameLayout2);
 		frm.setBackgroundColor(Color.BLACK);
@@ -245,7 +244,7 @@ public class RubikCubeAnimationExampleActivity extends Activity implements
 				button1.setText("Next");
 			}
 		});
-		
+
 	}
 
 	@Override
@@ -261,30 +260,29 @@ public class RubikCubeAnimationExampleActivity extends Activity implements
 	}
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (!rotate) {
-			if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
-				mView.queueEvent(new Runnable() {
-					// This method will be called on the rendering
-					// thread:
-					public void run() {
-						rotateFace(2, true);
-					}
-				});
-				return true;
-			}
-
-			return super.onKeyDown(keyCode, event);
+		if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+			mView.queueEvent(new Runnable() {
+				// This method will be called on the rendering
+				// thread:
+				public void run() {
+					rotateFace(2, true);
+				}
+			});
+			return true;
 		}
-		return false;
+
+		return super.onKeyDown(keyCode, event);
 	}
 
-	public boolean n = true;
-	public int mLayerID = 0;
-	public boolean rotate = false;
+	public static boolean n = true;
+	public static int mLayerID = 0;
+	public static boolean rotate = false;
 
-	public void rotateFace(int face, boolean direction) {
-		mLayerID = mRandom.nextInt(9);
+	public static void rotateFace(int face, boolean direction) {
+		if (!rotate){ 
+		mLayerID = face;
 		rotate = true;
+		}
 	}
 
 	public void animate() {
@@ -376,7 +374,7 @@ public class RubikCubeAnimationExampleActivity extends Activity implements
 	// current permutation of starting position
 	int[] mPermutation;
 
-	// for random cube movements
+	static // for random cube movements
 	Random mRandom = new Random(System.currentTimeMillis());
 	// currently turning layer
 	Layer mCurrentLayer = null;
