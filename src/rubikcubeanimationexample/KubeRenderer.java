@@ -24,8 +24,8 @@ class KubeRenderer implements GLSurfaceView.Renderer {
         gl.glLoadIdentity();
         gl.glTranslatef(0, 0, -3.0f);
         gl.glScalef(0.5f, 0.5f, 0.5f);
-        gl.glRotatef(mAngle,        0, 1, 0);
-        gl.glRotatef(mAngle*0.25f,  1, 0, 0);
+        gl.glRotatef(mAngleY, 0, 1, 0);
+        gl.glRotatef(mAngleX, 1, 0, 0);
 
         gl.glColor4f(0.7f, 0.7f, 0.7f, 1.0f);
         gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
@@ -50,15 +50,24 @@ class KubeRenderer implements GLSurfaceView.Renderer {
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
     }
 
-    public void setAngle(float angle) {
-        mAngle = angle;
+    public void setAngleX(float angle) {
+        mAngleX = angle;
+    }
+    
+    public void setAngleY(float angle) {
+        mAngleY = angle;
     }
 
-    public float getAngle() {
-        return mAngle;
+    public float getAngleX() {
+        return mAngleX;
+    }
+    
+    public float getAngleY() {
+        return mAngleY;
     }
 
     private GLWorld mWorld;
     private AnimationCallback mCallback;
-    private float mAngle;
+    private float mAngleX;
+    private float mAngleY;
 }

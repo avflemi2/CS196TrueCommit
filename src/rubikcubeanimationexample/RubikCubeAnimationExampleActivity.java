@@ -10,6 +10,7 @@ import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -79,36 +80,38 @@ public class RubikCubeAnimationExampleActivity extends Activity implements
 		mCubes[26] = new Cube(world, c4, c0, c4, c5, c1, c5);
 
 		// paint the sides
-		int i, j;
+		int i, j, k, l;
 		// set all faces black by default
 		for (i = 0; i < 27; i++) {
 			Cube cube = mCubes[i];
 			if (cube != null) {
 				for (j = 0; j < 6; j++)
-					cube.setFaceColor(j, black);
+					cube.setFaceColor(j, 'Z');
 			}
 		}
 
 		// paint top
-		for (i = 0; i < 9; i++)
-			mCubes[i].setFaceColor(Cube.kTop, orange);
+		for (i = 0, j = 36; i < 9; i++, j++)
+			mCubes[i].setFaceColor(Cube.kTop, rubiks.cs196.Cube.getColor(j));
 		// paint bottom
-		for (i = 18; i < 27; i++)
-			mCubes[i].setFaceColor(Cube.kBottom, red);
+		for (i = 18, j = 45; i < 27; i++, j++)
+			mCubes[i].setFaceColor(Cube.kBottom, rubiks.cs196.Cube.getColor(j));
 		// paint left
-		for (i = 0; i < 27; i += 3)
-			mCubes[i].setFaceColor(Cube.kLeft, yellow);
+		for (i = 0, j = 27; i < 27; i += 3, j++)
+			mCubes[i].setFaceColor(Cube.kLeft, rubiks.cs196.Cube.getColor(j));
 		// paint right
-		for (i = 2; i < 27; i += 3)
-			mCubes[i].setFaceColor(Cube.kRight, white);
+		for (i = 2, j = 9; i < 27; i += 3, j++)
+			mCubes[i].setFaceColor(Cube.kRight, rubiks.cs196.Cube.getColor(j));
 		// paint back
-		for (i = 0; i < 27; i += 9)
-			for (j = 0; j < 3; j++)
-				mCubes[i + j].setFaceColor(Cube.kBack, blue);
+		for (i = 0, k = 18; i < 27; i += 9, k += 3)
+			for (j = 0, l = 0; j < 3; j++, l++)
+				mCubes[i + j].setFaceColor(Cube.kBack,
+						rubiks.cs196.Cube.getColor(k + l));
 		// paint front
-		for (i = 6; i < 27; i += 9)
-			for (j = 0; j < 3; j++)
-				mCubes[i + j].setFaceColor(Cube.kFront, green);
+		for (i = 6, k = 0; i < 27; i += 9, k += 3)
+			for (j = 0, l = 0; j < 3; j++, l++)
+				mCubes[i + j].setFaceColor(Cube.kFront,
+						rubiks.cs196.Cube.getColor(k + l));
 
 		for (i = 0; i < 27; i++)
 			if (mCubes[i] != null)
@@ -279,17 +282,74 @@ public class RubikCubeAnimationExampleActivity extends Activity implements
 	public static boolean rotate = false;
 
 	public static void rotateFace(int face, boolean direction) {
-		if (!rotate){ 
-		mLayerID = face;
-		rotate = true;
+		if (!rotate) {
+			mLayerID = face;
+			rotate = true;
 		}
+	}
+
+	private float touchTurn = 0;
+	private float touchTurnUp = 0;
+	private float touchTurnSpeed = 25.0f;
+
+	private float xpos = -1;
+	private float ypos = -1;
+
+	public boolean onTouchEvent(MotionEvent me) {
+
+		if (me.getAction() == MotionEvent.ACTION_DOWN) {
+			xpos = me.getX();
+			ypos = me.getY();
+			return true;
+		}
+
+		if (me.getAction() == MotionEvent.ACTION_UP) {
+			xpos = -1;
+			ypos = -1;
+			touchTurn = 0;
+			touchTurnUp = 0;
+			return true;
+		}
+
+		if (me.getAction() == MotionEvent.ACTION_MOVE) {
+			float xd = me.getX() - xpos;
+			float yd = me.getY() - ypos;
+
+			xpos = me.getX();
+			ypos = me.getY();
+
+			touchTurn = xd / -100f;
+			touchTurnUp = yd / -100f;
+			return true;
+		}
+
+		try {
+			Thread.sleep(15);
+		} catch (Exception e) {
+			// No need for this...
+		}
+
+		return super.onTouchEvent(me);
 	}
 
 	public void animate() {
 		if (n) {
 			// change our angle of view
-			mRenderer.setAngle(mRenderer.getAngle() + 200.0f);
+			mRenderer.setAngleX(200.0f);
+			mRenderer.setAngleY(200.0f);
 			n = false;
+		}
+
+		if (touchTurn != 0) {
+			mRenderer.setAngleY(mRenderer.getAngleY() + -touchTurn
+					* touchTurnSpeed);
+			touchTurn = 0;
+		}
+
+		if (touchTurnUp != 0) {
+			mRenderer.setAngleX(mRenderer.getAngleX() + -touchTurnUp
+					* touchTurnSpeed);
+			touchTurnUp = 0;
 		}
 
 		if (rotate) {
@@ -304,10 +364,10 @@ public class RubikCubeAnimationExampleActivity extends Activity implements
 				direction = false;
 				mCurrentAngle = 0;
 				if (direction) {
-					mAngleIncrement = (float) Math.PI / 50;
+					mAngleIncrement = (float) Math.PI / 20;
 					mEndAngle = mCurrentAngle + ((float) Math.PI * count) / 2f;
 				} else {
-					mAngleIncrement = -(float) Math.PI / 50;
+					mAngleIncrement = -(float) Math.PI / 20;
 					mEndAngle = mCurrentAngle - ((float) Math.PI * count) / 2f;
 				}
 			}
@@ -374,7 +434,7 @@ public class RubikCubeAnimationExampleActivity extends Activity implements
 	// current permutation of starting position
 	int[] mPermutation;
 
-	static // for random cube movements
+	static// for random cube movements
 	Random mRandom = new Random(System.currentTimeMillis());
 	// currently turning layer
 	Layer mCurrentLayer = null;

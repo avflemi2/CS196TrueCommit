@@ -48,7 +48,7 @@ public class Cube {
 	}
 
 	// @return char color at @index
-	protected static char getColor(int index) {
+	public static char getColor(int index) {
 		return cube[index];
 	}
 
