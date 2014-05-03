@@ -2,6 +2,8 @@ package rubikcubeanimationexample;
 
 import java.util.Random;
 
+import rubikcubeanimationexample.Cube;
+
 import rubiks.cs196.R;
 import rubiks.cs196.solveCube;
 import android.app.Activity;
@@ -24,16 +26,6 @@ public class RubikCubeAnimationExampleActivity extends Activity implements
 
 	private GLWorld makeGLWorld() {
 		GLWorld world = new GLWorld();
-
-		int one = 0x10000;
-		int half = 0x08000;
-		GLColor red = new GLColor(one, 0, 0);
-		GLColor green = new GLColor(0, one, 0);
-		GLColor blue = new GLColor(0, 0, one);
-		GLColor yellow = new GLColor(one, one, 0);
-		GLColor orange = new GLColor(one, half, 0);
-		GLColor white = new GLColor(one, one, one);
-		GLColor black = new GLColor(0, 0, 0);
 
 		float c0 = -1.0f;
 		float c1 = -0.38f;
@@ -90,24 +82,43 @@ public class RubikCubeAnimationExampleActivity extends Activity implements
 			}
 		}
 
-		// paint top
+		// paint top (white)
 		for (i = 0, j = 36; i < 9; i++, j++)
 			mCubes[i].setFaceColor(Cube.kTop, rubiks.cs196.Cube.getColor(j));
-		// paint bottom
-		for (i = 18, j = 45; i < 27; i++, j++)
-			mCubes[i].setFaceColor(Cube.kBottom, rubiks.cs196.Cube.getColor(j));
-		// paint left
+		// paint bottom (yellow)
+		mCubes[18].setFaceColor(Cube.kBottom, rubiks.cs196.Cube.getColor(51));
+		mCubes[19].setFaceColor(Cube.kBottom, rubiks.cs196.Cube.getColor(52));
+		mCubes[20].setFaceColor(Cube.kBottom, rubiks.cs196.Cube.getColor(53));
+		mCubes[21].setFaceColor(Cube.kBottom, rubiks.cs196.Cube.getColor(48));
+		mCubes[22].setFaceColor(Cube.kBottom, rubiks.cs196.Cube.getColor(49));
+		mCubes[23].setFaceColor(Cube.kBottom, rubiks.cs196.Cube.getColor(50));
+		mCubes[24].setFaceColor(Cube.kBottom, rubiks.cs196.Cube.getColor(45));
+		mCubes[25].setFaceColor(Cube.kBottom, rubiks.cs196.Cube.getColor(46));
+		mCubes[26].setFaceColor(Cube.kBottom, rubiks.cs196.Cube.getColor(47));
+		// paint left (orange)
 		for (i = 0, j = 27; i < 27; i += 3, j++)
 			mCubes[i].setFaceColor(Cube.kLeft, rubiks.cs196.Cube.getColor(j));
-		// paint right
-		for (i = 2, j = 9; i < 27; i += 3, j++)
-			mCubes[i].setFaceColor(Cube.kRight, rubiks.cs196.Cube.getColor(j));
-		// paint back
-		for (i = 0, k = 18; i < 27; i += 9, k += 3)
-			for (j = 0, l = 0; j < 3; j++, l++)
-				mCubes[i + j].setFaceColor(Cube.kBack,
-						rubiks.cs196.Cube.getColor(k + l));
-		// paint front
+		// paint right (red)
+		mCubes[8].setFaceColor(Cube.kRight, rubiks.cs196.Cube.getColor(9));
+		mCubes[5].setFaceColor(Cube.kRight, rubiks.cs196.Cube.getColor(10));
+		mCubes[2].setFaceColor(Cube.kRight, rubiks.cs196.Cube.getColor(11));
+		mCubes[17].setFaceColor(Cube.kRight, rubiks.cs196.Cube.getColor(12));
+		mCubes[14].setFaceColor(Cube.kRight, rubiks.cs196.Cube.getColor(13));
+		mCubes[11].setFaceColor(Cube.kRight, rubiks.cs196.Cube.getColor(14));
+		mCubes[26].setFaceColor(Cube.kRight, rubiks.cs196.Cube.getColor(15));
+		mCubes[23].setFaceColor(Cube.kRight, rubiks.cs196.Cube.getColor(16));
+		mCubes[20].setFaceColor(Cube.kRight, rubiks.cs196.Cube.getColor(17));
+		// paint back b
+		mCubes[2].setFaceColor(Cube.kBack, rubiks.cs196.Cube.getColor(18));
+		mCubes[1].setFaceColor(Cube.kBack, rubiks.cs196.Cube.getColor(19));
+		mCubes[0].setFaceColor(Cube.kBack, rubiks.cs196.Cube.getColor(20));
+		mCubes[11].setFaceColor(Cube.kBack, rubiks.cs196.Cube.getColor(21));
+		mCubes[10].setFaceColor(Cube.kBack, rubiks.cs196.Cube.getColor(22));
+		mCubes[9].setFaceColor(Cube.kBack, rubiks.cs196.Cube.getColor(23));
+		mCubes[20].setFaceColor(Cube.kBack, rubiks.cs196.Cube.getColor(24));
+		mCubes[19].setFaceColor(Cube.kBack, rubiks.cs196.Cube.getColor(25));
+		mCubes[18].setFaceColor(Cube.kBack, rubiks.cs196.Cube.getColor(26));
+		// paint front (green)
 		for (i = 6, k = 0; i < 27; i += 9, k += 3)
 			for (j = 0, l = 0; j < 3; j++, l++)
 				mCubes[i + j].setFaceColor(Cube.kFront,
@@ -335,8 +346,8 @@ public class RubikCubeAnimationExampleActivity extends Activity implements
 	public void animate() {
 		if (n) {
 			// change our angle of view
-			mRenderer.setAngleX(200.0f);
-			mRenderer.setAngleY(200.0f);
+			// mRenderer.setAngleX(200.0f);
+			// mRenderer.setAngleY(200.0f);
 			n = false;
 		}
 
