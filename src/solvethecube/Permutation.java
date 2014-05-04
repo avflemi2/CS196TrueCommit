@@ -1,6 +1,6 @@
 package solvethecube;
 
-import openglcube.RubikCubeAnimationExampleActivity;
+import openglcube.OpenGLActivity;
 
 /**
  * Permutation class
@@ -77,16 +77,16 @@ public class Permutation extends Cube {
 	protected static String rotateCCW(int face) {
 		Message msg = new Message(false, "CCW\t" + Cube.faceToString(face));
 		if (isOppositeTurn(face)){
-			while (RubikCubeAnimationExampleActivity.rotate){};
-			RubikCubeAnimationExampleActivity.rotateFace(face, true);
-			while (RubikCubeAnimationExampleActivity.rotate){};
-			RubikCubeAnimationExampleActivity.rotateFace(face, true);
-			while (RubikCubeAnimationExampleActivity.rotate){};
-			RubikCubeAnimationExampleActivity.rotateFace(face, true);
+			while (OpenGLActivity.rotate){};
+			OpenGLActivity.rotateFace(face, true);
+			while (OpenGLActivity.rotate){};
+			OpenGLActivity.rotateFace(face, true);
+			while (OpenGLActivity.rotate){};
+			OpenGLActivity.rotateFace(face, true);
 		}
 		else{
-			while (RubikCubeAnimationExampleActivity.rotate){};
-		RubikCubeAnimationExampleActivity.rotateFace(face, true);
+			while (OpenGLActivity.rotate){};
+		OpenGLActivity.rotateFace(face, true);
 		}
 		moves++;
 		rotateCCW2(face);
@@ -97,16 +97,16 @@ public class Permutation extends Cube {
 	protected static String rotateCW(int face) {
 		Message msg = new Message(false, "CW\t" + Cube.faceToString(face));
 		if (isOppositeTurn(face)){
-			while (RubikCubeAnimationExampleActivity.rotate){};
-			RubikCubeAnimationExampleActivity.rotateFace(face, true);
+			while (OpenGLActivity.rotate){};
+			OpenGLActivity.rotateFace(face, true);
 		}
 		else{
-		while (RubikCubeAnimationExampleActivity.rotate){};
-		RubikCubeAnimationExampleActivity.rotateFace(face, true);
-		while (RubikCubeAnimationExampleActivity.rotate){};
-		RubikCubeAnimationExampleActivity.rotateFace(face, true);
-		while (RubikCubeAnimationExampleActivity.rotate){};
-		RubikCubeAnimationExampleActivity.rotateFace(face, true);
+		while (OpenGLActivity.rotate){};
+		OpenGLActivity.rotateFace(face, true);
+		while (OpenGLActivity.rotate){};
+		OpenGLActivity.rotateFace(face, true);
+		while (OpenGLActivity.rotate){};
+		OpenGLActivity.rotateFace(face, true);
 		}
 		moves++;
 		rotateCCW2(face);
@@ -118,10 +118,10 @@ public class Permutation extends Cube {
 	// rotates @face clockwise twice
 	protected static String rotate180(int face) {
 		Message msg = new Message(false, "180\t" + Cube.faceToString(face));
-		while (RubikCubeAnimationExampleActivity.rotate){};
-		RubikCubeAnimationExampleActivity.rotateFace(face, true);
-		while (RubikCubeAnimationExampleActivity.rotate){};
-		RubikCubeAnimationExampleActivity.rotateFace(face, true);
+		while (OpenGLActivity.rotate){};
+		OpenGLActivity.rotateFace(face, true);
+		while (OpenGLActivity.rotate){};
+		OpenGLActivity.rotateFace(face, true);
 		moves++;
 		rotateCCW2(face);
 		rotateCCW2(face);

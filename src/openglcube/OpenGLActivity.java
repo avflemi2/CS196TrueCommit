@@ -19,7 +19,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-public class RubikCubeAnimationExampleActivity extends Activity implements
+public class OpenGLActivity extends Activity implements
 		KubeRenderer.AnimationCallback {
 
 	private GLWorld makeGLWorld() {

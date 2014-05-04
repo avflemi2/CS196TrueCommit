@@ -1,6 +1,6 @@
 package solvethecube;
 
-import openglcube.RubikCubeAnimationExampleActivity;
+import openglcube.OpenGLActivity;
 
 import com.threed.jpct.Logger;
 
@@ -19,7 +19,7 @@ public class Message {
 
 	public String print() {
 		Logger.log(message);
-		RubikCubeAnimationExampleActivity.msg = message;
+		OpenGLActivity.msg = message;
 		pause();
 		return message;
 	}
@@ -29,9 +29,9 @@ public class Message {
 	}
 
 	public void pause() {
-		RubikCubeAnimationExampleActivity.paused = true;
+		OpenGLActivity.paused = true;
 		Logger.log("paused");
-		while (RubikCubeAnimationExampleActivity.paused) {
+		while (OpenGLActivity.paused) {
 		}
 	}
 

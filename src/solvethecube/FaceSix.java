@@ -1,6 +1,6 @@
 package solvethecube;
 
-import openglcube.RubikCubeAnimationExampleActivity;
+import openglcube.OpenGLActivity;
 import rubik.cs196.R;
 import android.app.Activity;
 import android.content.Intent;
@@ -31,7 +31,7 @@ public class FaceSix extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getApplicationContext(), RubikCubeAnimationExampleActivity.class);
+				Intent intent = new Intent(getApplicationContext(), OpenGLActivity.class);
 				startActivity(intent);
 			}
 		});
