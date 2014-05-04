@@ -2,7 +2,7 @@ package rubiks.cs196;
 
 //import com.threed.jpct.example.HelloWorld;
 
-import rubikcubeanimationexample.RubikCubeAnimationExampleActivity;
+import openglcube.RubikCubeAnimationExampleActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -49,8 +49,8 @@ public class Menu extends Activity {
 		button2.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getApplicationContext(), RubikCubeAnimationExampleActivity.class);
-				startActivity(intent);
+				android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(1);
 			}
 		});
 		

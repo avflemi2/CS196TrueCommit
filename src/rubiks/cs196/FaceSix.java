@@ -1,6 +1,6 @@
 package rubiks.cs196;
 
-import rubikcubeanimationexample.RubikCubeAnimationExampleActivity;
+import openglcube.RubikCubeAnimationExampleActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -166,30 +166,11 @@ public class FaceSix extends Activity {
 		});
 
 		final Button button2 = (Button) findViewById(R.id.button2);
+		button2.setBackgroundColor(Color.YELLOW);
 		button2.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				int i = 46;
-				if (flags[0]) {
-					button2.setBackgroundColor(Color.RED);
-					Cube.setColor(i, 'R');
-				} else if (flags[1]) {
-					button2.setBackgroundColor(Home.ORANGE);
-					Cube.setColor(i, 'O');
-				} else if (flags[2]) {
-					button2.setBackgroundColor(Color.YELLOW);
-					Cube.setColor(i, 'Y');
-				} else if (flags[3]) {
-					button2.setBackgroundColor(Color.GREEN);
-					Cube.setColor(i, 'G');
-				} else if (flags[4]) {
-					button2.setBackgroundColor(Color.BLUE);
-					Cube.setColor(i, 'B');
-				} else {
-					button2.setBackgroundColor(Color.WHITE);
-					Cube.setColor(i, 'W');
-				}
 				Toast toast = Toast.makeText(getApplicationContext(),
 						"Choose A Color", Toast.LENGTH_SHORT);
 				toast.show();
@@ -228,30 +209,11 @@ public class FaceSix extends Activity {
 		});
 
 		final Button button4 = (Button) findViewById(R.id.button4);
+		button4.setBackgroundColor(Color.YELLOW);
 		button4.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				int i = 48;
-				if (flags[0]) {
-					button4.setBackgroundColor(Color.RED);
-					Cube.setColor(i, 'R');
-				} else if (flags[1]) {
-					button4.setBackgroundColor(Home.ORANGE);
-					Cube.setColor(i, 'O');
-				} else if (flags[2]) {
-					button4.setBackgroundColor(Color.YELLOW);
-					Cube.setColor(i, 'Y');
-				} else if (flags[3]) {
-					button4.setBackgroundColor(Color.GREEN);
-					Cube.setColor(i, 'G');
-				} else if (flags[4]) {
-					button4.setBackgroundColor(Color.BLUE);
-					Cube.setColor(i, 'B');
-				} else {
-					button4.setBackgroundColor(Color.WHITE);
-					Cube.setColor(i, 'W');
-				}
 				Toast toast = Toast.makeText(getApplicationContext(),
 						"Choose A Color", Toast.LENGTH_SHORT);
 				toast.show();
@@ -271,30 +233,11 @@ public class FaceSix extends Activity {
 		});
 
 		final Button button6 = (Button) findViewById(R.id.button6);
+		button6.setBackgroundColor(Color.YELLOW);
 		button6.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				int i = 50;
-				if (flags[0]) {
-					button6.setBackgroundColor(Color.RED);
-					Cube.setColor(i, 'R');
-				} else if (flags[1]) {
-					button6.setBackgroundColor(Home.ORANGE);
-					Cube.setColor(i, 'O');
-				} else if (flags[2]) {
-					button6.setBackgroundColor(Color.YELLOW);
-					Cube.setColor(i, 'Y');
-				} else if (flags[3]) {
-					button6.setBackgroundColor(Color.GREEN);
-					Cube.setColor(i, 'G');
-				} else if (flags[4]) {
-					button6.setBackgroundColor(Color.BLUE);
-					Cube.setColor(i, 'B');
-				} else {
-					button6.setBackgroundColor(Color.WHITE);
-					Cube.setColor(i, 'W');
-				}
 				Toast toast = Toast.makeText(getApplicationContext(),
 						"Choose A Color", Toast.LENGTH_SHORT);
 				toast.show();
@@ -333,30 +276,11 @@ public class FaceSix extends Activity {
 		});
 
 		final Button button8 = (Button) findViewById(R.id.button8);
+		button8.setBackgroundColor(Color.YELLOW);
 		button8.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				int i = 52;
-				if (flags[0]) {
-					button8.setBackgroundColor(Color.RED);
-					Cube.setColor(i, 'R');
-				} else if (flags[1]) {
-					button8.setBackgroundColor(Home.ORANGE);
-					Cube.setColor(i, 'O');
-				} else if (flags[2]) {
-					button8.setBackgroundColor(Color.YELLOW);
-					Cube.setColor(i, 'Y');
-				} else if (flags[3]) {
-					button8.setBackgroundColor(Color.GREEN);
-					Cube.setColor(i, 'G');
-				} else if (flags[4]) {
-					button8.setBackgroundColor(Color.BLUE);
-					Cube.setColor(i, 'B');
-				} else {
-					button8.setBackgroundColor(Color.WHITE);
-					Cube.setColor(i, 'W');
-				}
 				Toast toast = Toast.makeText(getApplicationContext(),
 						"Choose A Color", Toast.LENGTH_SHORT);
 				toast.show();

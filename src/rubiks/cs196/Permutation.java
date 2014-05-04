@@ -1,6 +1,6 @@
 package rubiks.cs196;
 
-import rubikcubeanimationexample.RubikCubeAnimationExampleActivity;
+import openglcube.RubikCubeAnimationExampleActivity;
 
 /**
  * Permutation class

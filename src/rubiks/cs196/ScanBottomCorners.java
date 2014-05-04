@@ -8,6 +8,8 @@ public class ScanBottomCorners extends Scanner {
 	private static boolean[] yellowCorners = new boolean[4];
 
 	public static void run() {
+		new Message(true, "Next, you will insert the 4 yellow corner"
+				+ " pieces into the bottom layer.");
 		setFlags();
 		if (correctCorners()) {
 			new Message(true,"All corners aligned!");

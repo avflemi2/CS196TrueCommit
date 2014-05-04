@@ -1,4 +1,5 @@
 package rubiks.cs196;
+
 public class ScanCrossPieces extends Scanner {
 
 	private static int[] pairs = { 4, 7, 13, 16, 22, 25, 31, 34 };
@@ -8,29 +9,36 @@ public class ScanCrossPieces extends Scanner {
 
 	// run the method
 	public static void run() {
+		new Message(true, "You will rotate the yellow cross until some of"
+				+ " the colors "
+				+ "around the sides begin to match. If you get it so "
+				+ "that one color matches, keep rotating futher. It "
+				+ "is always possible to get at least 2 colors to match. "
+				+ "If you're very lucky, it is possible "
+				+ "that all 4 colors match.\n");
 		setFlags();
 		if (sameFaces() == 4) {
-			new Message(true,"All 4 colors match!");
+			new Message(true, "All 4 colors match!");
 			return;
 		}
-		new Message(true,"Rotate the yellow cross until you get two colors to match.");
+		new Message(true,
+				"Rotate the yellow cross until you get two colors to match.");
 		alignBottom();
 		if (sameFaces() == 4) {
-			new Message(true,"All 4 colors match!");
+			new Message(true, "All 4 colors match!");
 			return;
 		}
-		new Message(true,"You have two bad cross pieces. "
+		new Message(true, "You have two bad cross pieces. "
 				+ "You will need to swap them. There are "
 				+ "two different possibilities. Either the "
 				+ "two bad pieces are next to each other, "
 				+ "or they are on opposite sides of the cube.");
 		if (isAdjacent()) {
-			new Message(true,"Your two bad pieces are next to "
-					+ "eachother.");
+			new Message(true, "Your two bad pieces are next to " + "eachother.");
 			Cube.setOrientation(orientAdjacent());
 			Algorithms.swapCrossPieces(1);
 		} else {
-			new Message(true,"Your two bad pieces are next to "
+			new Message(true, "Your two bad pieces are next to "
 					+ "on opposite sides of one another.");
 			Cube.setOrientation(orientOpposite());
 			Algorithms.swapCrossPieces(2);
@@ -59,7 +67,7 @@ public class ScanCrossPieces extends Scanner {
 		while (sameFaces() < 2) {
 			Algorithms.swapCrossPieces(3);
 		}
-		new Message(true,"Two colors match!");
+		new Message(true, "Two colors match!");
 	}
 
 	// returns face that will set orientation

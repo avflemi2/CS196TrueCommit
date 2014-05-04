@@ -8,7 +8,7 @@
     <string name="next"> Next </string>
     <string name="welcome">Welcome to Rubik!</string>
     <string name="faces">My Cube</string>
-    <string name="cube">Model</string>
+    <string name="cube">Exit</string>
     <string name="steps">Time to solve your cube!</string>
     <string name="nextbutton">Start</string>
     <string name="step1">Now we can start solving your cube!</string>

@@ -1,10 +1,10 @@
 package rubiks.cs196;
 
-import rubikcubeanimationexample.RubikCubeAnimationExampleActivity;
+import openglcube.RubikCubeAnimationExampleActivity;
 
 import com.threed.jpct.Logger;
 
-public class Message extends Tutorial {
+public class Message {
 	private String message;
 	private final int maxLineLength = 80;
 
