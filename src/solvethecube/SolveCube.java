@@ -30,9 +30,9 @@ public class SolveCube {
 		new Message(true, "STEP 8: Correctly position the edges");
 		ScanTopEdges.run();
 
-		if (Cube.isSolved())
+		//if (Cube.isSolved())
 			new Message(true, "CUBE SOLVED IN " + Permutation.moves + " MOVES!");
-		else
-			new Message(true, "Failed :(");
+		//else
+		//	new Message(true, "Failed :(");
 	}
 }
