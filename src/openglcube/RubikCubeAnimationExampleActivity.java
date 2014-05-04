@@ -2,10 +2,9 @@ package openglcube;
 
 import java.util.Random;
 
-import openglcube.Cube;
-import rubiks.cs196.Permutation;
-import rubiks.cs196.R;
-import rubiks.cs196.solveCube;
+import rubik.cs196.R;
+import solvethecube.Permutation;
+import solvethecube.solveCube;
 import android.app.Activity;
 import android.graphics.Color;
 import android.opengl.GLSurfaceView;
@@ -14,11 +13,10 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class RubikCubeAnimationExampleActivity extends Activity implements
@@ -84,45 +82,45 @@ public class RubikCubeAnimationExampleActivity extends Activity implements
 
 		// paint top (white)
 		for (i = 0, j = 36; i < 9; i++, j++)
-			mCubes[i].setFaceColor(Cube.kTop, rubiks.cs196.Cube.getColor(j));
+			mCubes[i].setFaceColor(Cube.kTop, solvethecube.Cube.getColor(j));
 		// paint bottom (yellow)
-		mCubes[18].setFaceColor(Cube.kBottom, rubiks.cs196.Cube.getColor(51));
-		mCubes[19].setFaceColor(Cube.kBottom, rubiks.cs196.Cube.getColor(52));
-		mCubes[20].setFaceColor(Cube.kBottom, rubiks.cs196.Cube.getColor(53));
-		mCubes[21].setFaceColor(Cube.kBottom, rubiks.cs196.Cube.getColor(48));
-		mCubes[22].setFaceColor(Cube.kBottom, rubiks.cs196.Cube.getColor(49));
-		mCubes[23].setFaceColor(Cube.kBottom, rubiks.cs196.Cube.getColor(50));
-		mCubes[24].setFaceColor(Cube.kBottom, rubiks.cs196.Cube.getColor(45));
-		mCubes[25].setFaceColor(Cube.kBottom, rubiks.cs196.Cube.getColor(46));
-		mCubes[26].setFaceColor(Cube.kBottom, rubiks.cs196.Cube.getColor(47));
+		mCubes[18].setFaceColor(Cube.kBottom, solvethecube.Cube.getColor(51));
+		mCubes[19].setFaceColor(Cube.kBottom, solvethecube.Cube.getColor(52));
+		mCubes[20].setFaceColor(Cube.kBottom, solvethecube.Cube.getColor(53));
+		mCubes[21].setFaceColor(Cube.kBottom, solvethecube.Cube.getColor(48));
+		mCubes[22].setFaceColor(Cube.kBottom, solvethecube.Cube.getColor(49));
+		mCubes[23].setFaceColor(Cube.kBottom, solvethecube.Cube.getColor(50));
+		mCubes[24].setFaceColor(Cube.kBottom, solvethecube.Cube.getColor(45));
+		mCubes[25].setFaceColor(Cube.kBottom, solvethecube.Cube.getColor(46));
+		mCubes[26].setFaceColor(Cube.kBottom, solvethecube.Cube.getColor(47));
 		// paint left (orange)
 		for (i = 0, j = 27; i < 27; i += 3, j++)
-			mCubes[i].setFaceColor(Cube.kLeft, rubiks.cs196.Cube.getColor(j));
+			mCubes[i].setFaceColor(Cube.kLeft, solvethecube.Cube.getColor(j));
 		// paint right (red)
-		mCubes[8].setFaceColor(Cube.kRight, rubiks.cs196.Cube.getColor(9));
-		mCubes[5].setFaceColor(Cube.kRight, rubiks.cs196.Cube.getColor(10));
-		mCubes[2].setFaceColor(Cube.kRight, rubiks.cs196.Cube.getColor(11));
-		mCubes[17].setFaceColor(Cube.kRight, rubiks.cs196.Cube.getColor(12));
-		mCubes[14].setFaceColor(Cube.kRight, rubiks.cs196.Cube.getColor(13));
-		mCubes[11].setFaceColor(Cube.kRight, rubiks.cs196.Cube.getColor(14));
-		mCubes[26].setFaceColor(Cube.kRight, rubiks.cs196.Cube.getColor(15));
-		mCubes[23].setFaceColor(Cube.kRight, rubiks.cs196.Cube.getColor(16));
-		mCubes[20].setFaceColor(Cube.kRight, rubiks.cs196.Cube.getColor(17));
+		mCubes[8].setFaceColor(Cube.kRight, solvethecube.Cube.getColor(9));
+		mCubes[5].setFaceColor(Cube.kRight, solvethecube.Cube.getColor(10));
+		mCubes[2].setFaceColor(Cube.kRight, solvethecube.Cube.getColor(11));
+		mCubes[17].setFaceColor(Cube.kRight, solvethecube.Cube.getColor(12));
+		mCubes[14].setFaceColor(Cube.kRight, solvethecube.Cube.getColor(13));
+		mCubes[11].setFaceColor(Cube.kRight, solvethecube.Cube.getColor(14));
+		mCubes[26].setFaceColor(Cube.kRight, solvethecube.Cube.getColor(15));
+		mCubes[23].setFaceColor(Cube.kRight, solvethecube.Cube.getColor(16));
+		mCubes[20].setFaceColor(Cube.kRight, solvethecube.Cube.getColor(17));
 		// paint back b
-		mCubes[2].setFaceColor(Cube.kBack, rubiks.cs196.Cube.getColor(18));
-		mCubes[1].setFaceColor(Cube.kBack, rubiks.cs196.Cube.getColor(19));
-		mCubes[0].setFaceColor(Cube.kBack, rubiks.cs196.Cube.getColor(20));
-		mCubes[11].setFaceColor(Cube.kBack, rubiks.cs196.Cube.getColor(21));
-		mCubes[10].setFaceColor(Cube.kBack, rubiks.cs196.Cube.getColor(22));
-		mCubes[9].setFaceColor(Cube.kBack, rubiks.cs196.Cube.getColor(23));
-		mCubes[20].setFaceColor(Cube.kBack, rubiks.cs196.Cube.getColor(24));
-		mCubes[19].setFaceColor(Cube.kBack, rubiks.cs196.Cube.getColor(25));
-		mCubes[18].setFaceColor(Cube.kBack, rubiks.cs196.Cube.getColor(26));
+		mCubes[2].setFaceColor(Cube.kBack, solvethecube.Cube.getColor(18));
+		mCubes[1].setFaceColor(Cube.kBack, solvethecube.Cube.getColor(19));
+		mCubes[0].setFaceColor(Cube.kBack, solvethecube.Cube.getColor(20));
+		mCubes[11].setFaceColor(Cube.kBack, solvethecube.Cube.getColor(21));
+		mCubes[10].setFaceColor(Cube.kBack, solvethecube.Cube.getColor(22));
+		mCubes[9].setFaceColor(Cube.kBack, solvethecube.Cube.getColor(23));
+		mCubes[20].setFaceColor(Cube.kBack, solvethecube.Cube.getColor(24));
+		mCubes[19].setFaceColor(Cube.kBack, solvethecube.Cube.getColor(25));
+		mCubes[18].setFaceColor(Cube.kBack, solvethecube.Cube.getColor(26));
 		// paint front (green)
 		for (i = 6, k = 0; i < 27; i += 9, k += 3)
 			for (j = 0, l = 0; j < 3; j++, l++)
 				mCubes[i + j].setFaceColor(Cube.kFront,
-						rubiks.cs196.Cube.getColor(k + l));
+						solvethecube.Cube.getColor(k + l));
 
 		for (i = 0; i < 27; i++)
 			if (mCubes[i] != null)
@@ -229,7 +227,7 @@ public class RubikCubeAnimationExampleActivity extends Activity implements
 
 		if (useTestCube) {
 			String stringCube = "BWWBGRBOGRBGBRORGORROGBGWBYYGOROWRROGWWWWOYOBWYYYYYBYG";
-			rubiks.cs196.Cube.setTo(stringCube.toCharArray());
+			solvethecube.Cube.setTo(stringCube.toCharArray());
 		}
 		/** SOLVECUBE in another thread **/
 		new Thread(new Runnable() {
