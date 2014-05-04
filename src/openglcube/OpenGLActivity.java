@@ -240,7 +240,7 @@ public class OpenGLActivity extends Activity implements
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		/** Set up views and renderer **/
-		setContentView(R.layout.overlay_test);
+		setContentView(R.layout.opengl_window);
 		mView = (GLSurfaceView) findViewById(R.id.surface);
 		// mView = new GLSurfaceView(getApplication());
 		mRenderer = new KubeRenderer(makeGLWorld(), this);

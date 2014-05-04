@@ -28,7 +28,7 @@ public class Menu extends Activity {
 			@Override
 			public void onClick(View v) {
 				OpenGLActivity.useTestCube = false;
-				Intent intent = new Intent(getApplicationContext(), Home.class);
+				Intent intent = new Intent(getApplicationContext(), FaceOne.class);
 				startActivity(intent);
 
 			}

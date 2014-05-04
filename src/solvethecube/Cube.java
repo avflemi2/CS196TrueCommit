@@ -52,7 +52,7 @@ public class Cube {
 		return cube[index];
 	}
 
-	public static boolean equals(String cube) {
+	public static boolean isSolved() {
 		return (cube.equals(completeCube));
 	}
 

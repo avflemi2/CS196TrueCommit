@@ -18,7 +18,7 @@ public class FaceSix extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_home);
+		setContentView(R.layout.face1);
 
 		RelativeLayout rel = (RelativeLayout) findViewById(R.id.rel1);
 		rel.setBackgroundColor(Color.BLACK);
@@ -46,7 +46,7 @@ public class FaceSix extends Activity {
 		buttonG.setBackgroundColor(Color.GREEN);
 
 		final Button buttonP = (Button) findViewById(R.id.buttonpink);
-		buttonP.setBackgroundColor(Home.ORANGE);
+		buttonP.setBackgroundColor(FaceOne.ORANGE);
 
 		final Button buttonY = (Button) findViewById(R.id.buttonyellow);
 		buttonY.setBackgroundColor(Color.YELLOW);
@@ -145,7 +145,7 @@ public class FaceSix extends Activity {
 					button1.setBackgroundColor(Color.RED);
 					Cube.setColor(i, 'R');
 				} else if (flags[1]) {
-					button1.setBackgroundColor(Home.ORANGE);
+					button1.setBackgroundColor(FaceOne.ORANGE);
 					Cube.setColor(i, 'O');
 				} else if (flags[2]) {
 					button1.setBackgroundColor(Color.YELLOW);
@@ -188,7 +188,7 @@ public class FaceSix extends Activity {
 					button3.setBackgroundColor(Color.RED);
 					Cube.setColor(i, 'R');
 				} else if (flags[1]) {
-					button3.setBackgroundColor(Home.ORANGE);
+					button3.setBackgroundColor(FaceOne.ORANGE);
 					Cube.setColor(i, 'O');
 				} else if (flags[2]) {
 					button3.setBackgroundColor(Color.YELLOW);
@@ -255,7 +255,7 @@ public class FaceSix extends Activity {
 					button7.setBackgroundColor(Color.RED);
 					Cube.setColor(i, 'R');
 				} else if (flags[1]) {
-					button7.setBackgroundColor(Home.ORANGE);
+					button7.setBackgroundColor(FaceOne.ORANGE);
 					Cube.setColor(i, 'O');
 				} else if (flags[2]) {
 					button7.setBackgroundColor(Color.YELLOW);
@@ -298,7 +298,7 @@ public class FaceSix extends Activity {
 					button9.setBackgroundColor(Color.RED);
 					Cube.setColor(i, 'R');
 				} else if (flags[1]) {
-					button9.setBackgroundColor(Home.ORANGE);
+					button9.setBackgroundColor(FaceOne.ORANGE);
 					Cube.setColor(i, 'O');
 				} else if (flags[2]) {
 					button9.setBackgroundColor(Color.YELLOW);
