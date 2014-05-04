@@ -53,7 +53,7 @@ public class Cube {
 	}
 
 	public static boolean isSolved() {
-		return (cube.equals(completeCube));
+		return (cube.toString().equals(completeCube));
 	}
 
 	public static String faceToString(int face) {
