@@ -3,7 +3,7 @@ package rubikcubeanimationexample;
 import java.util.Random;
 
 import rubikcubeanimationexample.Cube;
-
+import rubiks.cs196.Permutation;
 import rubiks.cs196.R;
 import rubiks.cs196.solveCube;
 import android.app.Activity;
@@ -227,10 +227,14 @@ public class RubikCubeAnimationExampleActivity extends Activity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		if (useTestCube) {
+			String stringCube = "BWWBGRBOGRBGBRORGORROGBGWBYYGOROWRROGWWWWOYOBWYYYYYBYG";
+			rubiks.cs196.Cube.setTo(stringCube.toCharArray());
+		}
 		/** SOLVECUBE in another thread **/
 		new Thread(new Runnable() {
 			public void run() {
-				solveCube.main(useTestCube);
+				solveCube.main();
 			}
 		}).start();
 
@@ -294,6 +298,7 @@ public class RubikCubeAnimationExampleActivity extends Activity implements
 
 	public static void rotateFace(int face, boolean direction) {
 		if (!rotate) {
+			face=Permutation.convertFace(face);
 			mLayerID = face;
 			rotate = true;
 		}
@@ -375,10 +380,10 @@ public class RubikCubeAnimationExampleActivity extends Activity implements
 				direction = false;
 				mCurrentAngle = 0;
 				if (direction) {
-					mAngleIncrement = (float) Math.PI / 20;
+					mAngleIncrement = (float) Math.PI / 10;
 					mEndAngle = mCurrentAngle + ((float) Math.PI * count) / 2f;
 				} else {
-					mAngleIncrement = -(float) Math.PI / 20;
+					mAngleIncrement = -(float) Math.PI / 10;
 					mEndAngle = mCurrentAngle - ((float) Math.PI * count) / 2f;
 				}
 			}
@@ -387,10 +392,10 @@ public class RubikCubeAnimationExampleActivity extends Activity implements
 
 			if ((mAngleIncrement > 0f && mCurrentAngle >= mEndAngle)
 					|| (mAngleIncrement < 0f && mCurrentAngle <= mEndAngle)) {
+				rotate = false;
 				mCurrentLayer.setAngle(mEndAngle);
 				mCurrentLayer.endAnimation();
 				mCurrentLayer = null;
-				rotate = false;
 
 				// adjust mPermutation based on the completed layer rotation
 				int[] newPermutation = new int[27];

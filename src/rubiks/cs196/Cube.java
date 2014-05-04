@@ -43,7 +43,7 @@ public class Cube {
 		cube = newCube;
 	}
 
-	protected static void setTo(char[] newCube) {
+	public static void setTo(char[] newCube) {
 		cube = newCube;
 	}
 

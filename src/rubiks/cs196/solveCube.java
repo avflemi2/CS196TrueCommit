@@ -4,22 +4,19 @@ import android.os.Looper;
 
 public class solveCube {
 
-	public static void main(boolean testCube) {
+	public static void main() {
 
 		Looper.prepare();
 
+		//ScanTest.run();
+		
 		new Message(
 				true,
 				"STEP 1: The first step was to build a yellow cross. You should have been able to do this on your own :)\n");
 
-		Message msg = new Message(false, "Solving this cube:\n");
-
-		if (testCube) {
-			String stringCube = "BWWBGRBOGRBGBRORGORROGBGWBYYGOROWRROGWWWWOYOBWYYYYYBYG";
-			Cube.setTo(stringCube.toCharArray());
-		}
-		msg.append(Cube.toString(true));
-		msg.print();
+		//Message msg = new Message(false, "Solving this cube:\n");
+		//msg.append(Cube.toString(true));
+		//msg.print();
 
 		ErrorCheck.errorCheck();
 

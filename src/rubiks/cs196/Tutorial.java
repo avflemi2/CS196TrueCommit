@@ -25,7 +25,7 @@ public class Tutorial extends Activity {
 		/** SOLVECUBE in another thread **/
 		new Thread(new Runnable() {
 			public void run() {
-				solveCube.main(useTestCube);
+				solveCube.main();
 			}
 		}).start();
 

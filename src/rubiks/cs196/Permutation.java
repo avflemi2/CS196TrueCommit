@@ -76,9 +76,18 @@ public class Permutation extends Cube {
 
 	protected static String rotateCCW(int face) {
 		Message msg = new Message(false, "CCW\t" + Cube.faceToString(face));
-		do {
+		if (isOppositeTurn(face)){
+			while (RubikCubeAnimationExampleActivity.rotate){};
 			RubikCubeAnimationExampleActivity.rotateFace(face, true);
-		} while (RubikCubeAnimationExampleActivity.rotate);
+			while (RubikCubeAnimationExampleActivity.rotate){};
+			RubikCubeAnimationExampleActivity.rotateFace(face, true);
+			while (RubikCubeAnimationExampleActivity.rotate){};
+			RubikCubeAnimationExampleActivity.rotateFace(face, true);
+		}
+		else{
+			while (RubikCubeAnimationExampleActivity.rotate){};
+		RubikCubeAnimationExampleActivity.rotateFace(face, true);
+		}
 		moves++;
 		rotateCCW2(face);
 		return msg.toString();
@@ -87,9 +96,18 @@ public class Permutation extends Cube {
 	// rotates @face clockwise once
 	protected static String rotateCW(int face) {
 		Message msg = new Message(false, "CW\t" + Cube.faceToString(face));
-		do {
+		if (isOppositeTurn(face)){
+			while (RubikCubeAnimationExampleActivity.rotate){};
 			RubikCubeAnimationExampleActivity.rotateFace(face, true);
-		} while (RubikCubeAnimationExampleActivity.rotate);
+		}
+		else{
+		while (RubikCubeAnimationExampleActivity.rotate){};
+		RubikCubeAnimationExampleActivity.rotateFace(face, true);
+		while (RubikCubeAnimationExampleActivity.rotate){};
+		RubikCubeAnimationExampleActivity.rotateFace(face, true);
+		while (RubikCubeAnimationExampleActivity.rotate){};
+		RubikCubeAnimationExampleActivity.rotateFace(face, true);
+		}
 		moves++;
 		rotateCCW2(face);
 		rotateCCW2(face);
@@ -100,13 +118,33 @@ public class Permutation extends Cube {
 	// rotates @face clockwise twice
 	protected static String rotate180(int face) {
 		Message msg = new Message(false, "180\t" + Cube.faceToString(face));
-		do {
-			RubikCubeAnimationExampleActivity.rotateFace(face, true);
-		} while (RubikCubeAnimationExampleActivity.rotate);
+		while (RubikCubeAnimationExampleActivity.rotate){};
+		RubikCubeAnimationExampleActivity.rotateFace(face, true);
+		while (RubikCubeAnimationExampleActivity.rotate){};
+		RubikCubeAnimationExampleActivity.rotateFace(face, true);
 		moves++;
 		rotateCCW2(face);
 		rotateCCW2(face);
 		return msg.toString();
+	}
+	
+	//converts to the 3d cubes face values
+	public static int convertFace(int face){
+		if (face == 4) return 0;
+		if (face == 5) return 1; //flipped
+		if (face == 3) return 2;
+		if (face == 1) return 3; //flipped
+		if (face == 0) return 4; //flipped
+		if (face == 2) return 5;
+		return -1;
+	}
+	
+	//flips directions for different layers
+	//use unconverted values!
+	public static boolean isOppositeTurn(int face){
+		if (face == 5||face==1||face==0)
+			return true;
+		return false;
 	}
 
 	// finds duplicate permutation values
