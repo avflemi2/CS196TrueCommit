@@ -2,7 +2,7 @@ package solvethecube;
 
 import android.os.Looper;
 
-public class solveCube {
+public class SolveCube {
 
 	public static void main() {
 

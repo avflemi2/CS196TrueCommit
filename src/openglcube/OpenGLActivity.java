@@ -4,7 +4,7 @@ import java.util.Random;
 
 import rubik.cs196.R;
 import solvethecube.Permutation;
-import solvethecube.solveCube;
+import solvethecube.SolveCube;
 import android.app.Activity;
 import android.graphics.Color;
 import android.opengl.GLSurfaceView;
@@ -232,7 +232,7 @@ public class OpenGLActivity extends Activity implements
 		/** SOLVECUBE in another thread **/
 		new Thread(new Runnable() {
 			public void run() {
-				solveCube.main();
+				SolveCube.main();
 			}
 		}).start();
 
@@ -296,7 +296,7 @@ public class OpenGLActivity extends Activity implements
 
 	public static void rotateFace(int face, boolean direction) {
 		if (!rotate) {
-			face=Permutation.convertFace(face);
+			face = Permutation.convertFace(face);
 			mLayerID = face;
 			rotate = true;
 		}
@@ -304,7 +304,7 @@ public class OpenGLActivity extends Activity implements
 
 	private float touchTurn = 0;
 	private float touchTurnUp = 0;
-	private float touchTurnSpeed = 25.0f;
+	private float touchTurnSpeed = 35.0f;
 
 	private float xpos = -1;
 	private float ypos = -1;
@@ -340,17 +340,19 @@ public class OpenGLActivity extends Activity implements
 		try {
 			Thread.sleep(15);
 		} catch (Exception e) {
-			// No need for this...
+			// No need for this
 		}
 
 		return super.onTouchEvent(me);
 	}
 
+	private float mRotateSpeed = 70f; 	// 0 to 100
+
 	public void animate() {
 		if (n) {
-			// change our angle of view
-			// mRenderer.setAngleX(200.0f);
-			// mRenderer.setAngleY(200.0f);
+			// initial view
+			mRenderer.setAngleX(23.0f);
+			mRenderer.setAngleY(-23.0f);
 			n = false;
 		}
 
@@ -378,10 +380,10 @@ public class OpenGLActivity extends Activity implements
 				direction = false;
 				mCurrentAngle = 0;
 				if (direction) {
-					mAngleIncrement = (float) Math.PI / 10;
+					mAngleIncrement = (float) Math.PI / (100f - mRotateSpeed);
 					mEndAngle = mCurrentAngle + ((float) Math.PI * count) / 2f;
 				} else {
-					mAngleIncrement = -(float) Math.PI / 10;
+					mAngleIncrement = -(float) Math.PI / (100f - mRotateSpeed);
 					mEndAngle = mCurrentAngle - ((float) Math.PI * count) / 2f;
 				}
 			}

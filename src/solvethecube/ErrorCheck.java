@@ -29,14 +29,16 @@ public class ErrorCheck extends Scanner {
 				colorCount[4]++;
 			else if (temp == 'Y')
 				colorCount[5]++;
-			else
+			else {
 				msg.append("Invalid color: " + temp);
-			isError = true;
+				isError = true;
+			}
 		}
 		for (int i = 0; i < colorCount.length; i++) {
-			if (colorCount[i] != 9)
+			if (colorCount[i] != 9) {
 				msg.append("Invalid number of " + colors[i] + " spaces");
-			isError = true;
+				isError = true;
+			}
 		}
 		for (int i = 0; i < colorCount.length; i++) {
 			colorCount[i] = 0;
@@ -57,14 +59,16 @@ public class ErrorCheck extends Scanner {
 				colorCount[4]++;
 			else if (temp == 'Y')
 				colorCount[5]++;
-			else
+			else {
 				msg.append("Invalid color: " + temp);
-			isError = true;
+				isError = true;
+			}
 		}
 		for (int i = 0; i < colorCount.length; i++) {
-			if (colorCount[i] != 4)
+			if (colorCount[i] != 4) {
 				msg.append("Invalid number of " + colors[i] + " corner spaces");
-			isError = true;
+				isError = true;
+			}
 
 		}
 		for (int i = 0; i < colorCount.length; i++) {
@@ -86,14 +90,16 @@ public class ErrorCheck extends Scanner {
 				colorCount[4]++;
 			else if (temp == 'Y')
 				colorCount[5]++;
-			else
+			else {
 				msg.append("Invalid color: " + temp);
-			isError = true;
+				isError = true;
+			}
 		}
 		for (int i = 0; i < colorCount.length; i++) {
-			if (colorCount[i] != 1)
+			if (colorCount[i] != 1) {
 				msg.append("Invalid number of " + colors[i] + " center spaces");
-			isError = true;
+				isError = true;
+			}
 		}
 
 		// Checks that there is one of each edge color
@@ -114,14 +120,16 @@ public class ErrorCheck extends Scanner {
 				colorCount[4]++;
 			else if (temp == 'Y')
 				colorCount[5]++;
-			else
+			else {
 				msg.append("Invalid color: " + temp);
-			isError = true;
+				isError = true;
+			}
 		}
 		for (int i = 0; i < colorCount.length; i++) {
-			if (colorCount[i] != 4)
+			if (colorCount[i] != 4) {
 				msg.append("Invalid number of " + colors[i] + " edge spaces");
-			isError = true;
+				isError = true;
+			}
 		}
 		if (isError)
 			msg.print();
