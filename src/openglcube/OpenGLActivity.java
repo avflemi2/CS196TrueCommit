@@ -83,7 +83,7 @@ public class OpenGLActivity extends Activity implements
 		// paint top (white)
 		for (i = 0, j = 36; i < 9; i++, j++)
 			mCubes[i].setFaceColor(Cube.kTop, solvethecube.Cube.getColor(j));
-		// paint bottom (yellow)
+		// paint bottom (yellow) //using arrays became too complicated
 		mCubes[18].setFaceColor(Cube.kBottom, solvethecube.Cube.getColor(51));
 		mCubes[19].setFaceColor(Cube.kBottom, solvethecube.Cube.getColor(52));
 		mCubes[20].setFaceColor(Cube.kBottom, solvethecube.Cube.getColor(53));
@@ -217,9 +217,6 @@ public class OpenGLActivity extends Activity implements
 				shapes[k++] = mCubes[mPermutation[i + j]];
 	}
 
-	public static String msg = "";
-	public static boolean paused = true;
-	public static boolean useTestCube = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -236,7 +233,7 @@ public class OpenGLActivity extends Activity implements
 			}
 		}).start();
 
-		// We don't need a title either.
+		//remove the title bar
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		/** Set up views and renderer **/
@@ -275,6 +272,8 @@ public class OpenGLActivity extends Activity implements
 		mView.onPause();
 	}
 
+	/*
+	 * use for testing rotates. Rotates face with volume down button
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
 			mView.queueEvent(new Runnable() {
@@ -289,8 +288,8 @@ public class OpenGLActivity extends Activity implements
 
 		return super.onKeyDown(keyCode, event);
 	}
+	*/
 
-	public static boolean n = true;
 	public static int mLayerID = 0;
 	public static boolean rotate = false;
 
@@ -302,12 +301,6 @@ public class OpenGLActivity extends Activity implements
 		}
 	}
 
-	private float touchTurn = 0;
-	private float touchTurnUp = 0;
-	private float touchTurnSpeed = 35.0f;
-
-	private float xpos = -1;
-	private float ypos = -1;
 
 	public boolean onTouchEvent(MotionEvent me) {
 
@@ -346,7 +339,7 @@ public class OpenGLActivity extends Activity implements
 		return super.onTouchEvent(me);
 	}
 
-	private float mRotateSpeed = 70f; 	// 0 to 100
+	public static boolean n = true;
 
 	public void animate() {
 		if (n) {
@@ -459,6 +452,23 @@ public class OpenGLActivity extends Activity implements
 	// amount to increment angle
 	float mAngleIncrement;
 	int[] mCurrentLayerPermutation;
+	
+	// speed that layers rotate
+	private float mRotateSpeed = 70f; 	// 0 to 100
+
+	// speed that the entire cube rotates with touch
+	private float touchTurnSpeed = 35.0f;
+	private float touchTurn = 0;
+	private float touchTurnUp = 0;
+	private float xpos = -1;
+	private float ypos = -1;
+	
+	// used to pass on the messages
+	public static String msg = "";
+	// used to synchronize the message class in the thread solving the cube
+	public static boolean paused = true;
+	// determines whether to use a test cube
+	public static boolean useTestCube = false;
 
 	// names for our 9 layers (based on notation from
 	// http://www.cubefreak.net/notation.html)
